@@ -11,7 +11,6 @@
 		45AE73D61B0BA72400DC3B90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AE73D51B0BA72400DC3B90 /* ViewController.swift */; };
 		45AE73D91B0BA72400DC3B90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45AE73D71B0BA72400DC3B90 /* Main.storyboard */; };
 		45AE73DB1B0BA72400DC3B90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45AE73DA1B0BA72400DC3B90 /* Images.xcassets */; };
-		45AE73DE1B0BA72400DC3B90 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45AE73DC1B0BA72400DC3B90 /* LaunchScreen.xib */; };
 		45AE73EA1B0BA72400DC3B90 /* SwitchPalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AE73E91B0BA72400DC3B90 /* SwitchPalTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,7 +31,6 @@
 		45AE73D51B0BA72400DC3B90 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		45AE73D81B0BA72400DC3B90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45AE73DA1B0BA72400DC3B90 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		45AE73DD1B0BA72400DC3B90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		45AE73E31B0BA72400DC3B90 /* SwitchPalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwitchPalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45AE73E81B0BA72400DC3B90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45AE73E91B0BA72400DC3B90 /* SwitchPalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchPalTests.swift; sourceTree = "<group>"; };
@@ -81,7 +79,6 @@
 				45AE73D51B0BA72400DC3B90 /* ViewController.swift */,
 				45AE73D71B0BA72400DC3B90 /* Main.storyboard */,
 				45AE73DA1B0BA72400DC3B90 /* Images.xcassets */,
-				45AE73DC1B0BA72400DC3B90 /* LaunchScreen.xib */,
 				45AE73D11B0BA72400DC3B90 /* Supporting Files */,
 			);
 			path = SwitchPal;
@@ -193,7 +190,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				45AE73D91B0BA72400DC3B90 /* Main.storyboard in Resources */,
-				45AE73DE1B0BA72400DC3B90 /* LaunchScreen.xib in Resources */,
 				45AE73DB1B0BA72400DC3B90 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,14 +238,6 @@
 				45AE73D81B0BA72400DC3B90 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		45AE73DC1B0BA72400DC3B90 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				45AE73DD1B0BA72400DC3B90 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -411,6 +399,7 @@
 				45AE73EF1B0BA72400DC3B90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		45AE73F01B0BA72400DC3B90 /* Build configuration list for PBXNativeTarget "SwitchPalTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +408,7 @@
 				45AE73F21B0BA72400DC3B90 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
