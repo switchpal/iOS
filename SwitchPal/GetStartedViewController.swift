@@ -8,7 +8,10 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class GetStartedViewController: UIViewController {
+    
+
+    @IBOutlet weak var scanButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,5 +24,10 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func scan(sender: UIButton) {
+        println("lets scan")
+        
+        self.performSegueWithIdentifier("scanSegue", sender: self)
+    }
 }
 

@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45A4B8ED1B0C233E0089A469 /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A4B8EC1B0C233E0089A469 /* BoundingBoxView.swift */; };
+		45A4B8EF1B0C23EE0089A469 /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A4B8EE1B0C23EE0089A469 /* DeviceViewController.swift */; };
+		45A4B8F11B0C25350089A469 /* QRScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A4B8F01B0C25350089A469 /* QRScanViewController.swift */; };
+		45A4B8F31B0C25BD0089A469 /* GetStartedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A4B8F21B0C25BD0089A469 /* GetStartedViewController.swift */; };
+		45A4B8F51B0C31080089A469 /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A4B8F41B0C31080089A469 /* ConfigViewController.swift */; };
 		45AE73D41B0BA72400DC3B90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AE73D31B0BA72400DC3B90 /* AppDelegate.swift */; };
-		45AE73D61B0BA72400DC3B90 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AE73D51B0BA72400DC3B90 /* ViewController.swift */; };
 		45AE73D91B0BA72400DC3B90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45AE73D71B0BA72400DC3B90 /* Main.storyboard */; };
 		45AE73DB1B0BA72400DC3B90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45AE73DA1B0BA72400DC3B90 /* Images.xcassets */; };
 		45AE73EA1B0BA72400DC3B90 /* SwitchPalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AE73E91B0BA72400DC3B90 /* SwitchPalTests.swift */; };
@@ -25,10 +29,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		45A4B8EC1B0C233E0089A469 /* BoundingBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
+		45A4B8EE1B0C23EE0089A469 /* DeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
+		45A4B8F01B0C25350089A469 /* QRScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
+		45A4B8F21B0C25BD0089A469 /* GetStartedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStartedViewController.swift; sourceTree = "<group>"; };
+		45A4B8F41B0C31080089A469 /* ConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		45AE73CE1B0BA72400DC3B90 /* SwitchPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwitchPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45AE73D21B0BA72400DC3B90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45AE73D31B0BA72400DC3B90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		45AE73D51B0BA72400DC3B90 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		45AE73D81B0BA72400DC3B90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45AE73DA1B0BA72400DC3B90 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		45AE73E31B0BA72400DC3B90 /* SwitchPalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwitchPalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -75,11 +83,15 @@
 		45AE73D01B0BA72400DC3B90 /* SwitchPal */ = {
 			isa = PBXGroup;
 			children = (
+				45A4B8F21B0C25BD0089A469 /* GetStartedViewController.swift */,
+				45A4B8F01B0C25350089A469 /* QRScanViewController.swift */,
 				45AE73D31B0BA72400DC3B90 /* AppDelegate.swift */,
-				45AE73D51B0BA72400DC3B90 /* ViewController.swift */,
 				45AE73D71B0BA72400DC3B90 /* Main.storyboard */,
 				45AE73DA1B0BA72400DC3B90 /* Images.xcassets */,
 				45AE73D11B0BA72400DC3B90 /* Supporting Files */,
+				45A4B8EC1B0C233E0089A469 /* BoundingBoxView.swift */,
+				45A4B8EE1B0C23EE0089A469 /* DeviceViewController.swift */,
+				45A4B8F41B0C31080089A469 /* ConfigViewController.swift */,
 			);
 			path = SwitchPal;
 			sourceTree = "<group>";
@@ -208,8 +220,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45AE73D61B0BA72400DC3B90 /* ViewController.swift in Sources */,
+				45A4B8EF1B0C23EE0089A469 /* DeviceViewController.swift in Sources */,
+				45A4B8ED1B0C233E0089A469 /* BoundingBoxView.swift in Sources */,
+				45A4B8F51B0C31080089A469 /* ConfigViewController.swift in Sources */,
+				45A4B8F11B0C25350089A469 /* QRScanViewController.swift in Sources */,
 				45AE73D41B0BA72400DC3B90 /* AppDelegate.swift in Sources */,
+				45A4B8F31B0C25BD0089A469 /* GetStartedViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
