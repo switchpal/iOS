@@ -137,7 +137,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="1Ro-pM-7yR" kind="show" id="s0H-GB-9Zi"/>
+                        <segue destination="1Ro-pM-7yR" kind="show" identifier="configSegue" id="s0H-GB-9Zi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tlr-ch-tAV" userLabel="First Responder" sceneMemberID="firstResponder"/>
