@@ -9,7 +9,7 @@
 import UIKit
 import CoreBluetooth
 
-class DeviceViewController: UIViewController, CBCentralManagerDelegate {
+class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
 
     var centralManager: CBCentralManager!
     var peripheral: CBPeripheral!
@@ -24,10 +24,6 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate {
         
         // Do any additional setup after loading the view.
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
-        
-        //self.peripheral = CBPeripheral
-        //self.centralManager.connectPeripheral(self.peripheral, options: nil)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,20 +41,6 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    
-    func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
-        println("find a peripheral")
-        if peripheral.name == device.getName() {
-            println("find the device")
-            
-            // stop scanning
-            centralManager.stopScan()
-            
-            self.peripheral = peripheral
-            centralManager.connectPeripheral(peripheral, options: nil)
-        }
-    }
     
     func centralManagerDidUpdateState(central: CBCentralManager!) {
         println("state: \(central.state.rawValue)")
@@ -81,8 +63,26 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate {
         }
     }
     
+    func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
+        println("find a peripheral")
+        if peripheral.name == device.getName() {
+            println("find the device")
+            
+            // stop scanning
+            centralManager.stopScan()
+            
+            // must hold the peripheral, or it will be recycled
+            // http://stackoverflow.com/a/26379021/693110
+            self.peripheral = peripheral
+            centralManager.connectPeripheral(peripheral, options: nil)
+            println("connecting to the device")
+        }
+    }
+    
     func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
         println("connected")
+        peripheral.delegate = self
+        peripheral.discoverServices(nil)
     }
     
     func centralManager(central: CBCentralManager!, didDisconnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
@@ -91,6 +91,46 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate {
     
     func centralManager(central: CBCentralManager!, didFailToConnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
         println("fail to connect")
+    }
+    
+    
+    func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
+        println("peripheral: didDiscoverServices")
+        for service in peripheral.services {
+            if let uuid = service.UUID {
+                println("uuid: ", uuid.UUIDString)
+                if uuid.UUIDString == Device.SERVICE_UUID {
+                    println("find service uuid")
+                    peripheral.discoverCharacteristics(nil, forService: service as! CBService)
+                }
+            }
+            println("UUID: \(service.UUID)")
+        }
+    }
+    
+    func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!) {
+        println("didDiscoverCharacteristicsForService")
+        for characteristic in service.characteristics {
+            println("characteristic", characteristic)
+            if let uuid = characteristic.UUID {
+                println("uuid: ", uuid.UUIDString)
+                if uuid.UUIDString == Device.TEMPERATURE_UUID {
+                    peripheral.readValueForCharacteristic(characteristic as! CBCharacteristic)
+                }
+            }
+        }
+    }
+    
+    func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
+        println("didUpdateValueForCharacteristic")
+        switch characteristic.UUID.UUIDString {
+        case Device.TEMPERATURE_UUID:
+            let temp = Device.decodeTemperature(characteristic.value)
+            println("temp: ", temp)
+        default:
+            println("data:", characteristic.value)
+            println("unknown characteristic: \(characteristic)")
+        }
     }
 
 }

@@ -12,11 +12,11 @@ public class Device {
     var address: String
     var passkey: String
     
-    var SERVICE_UUID = "fff0"
-    var SWITCH_STATE_UUID = "fff1"
-    var CONTROL_MODE_UUID = "fff2"
-    var TEMPERATURE_UUID = "fff3"
-    var TEMPERATURE_RANGE_UUID = "fff4"
+    static var SERVICE_UUID = "FFF0"
+    static var SWITCH_STATE_UUID = "FFF1"
+    static var CONTROL_MODE_UUID = "FFF2"
+    static var TEMPERATURE_UUID = "FFF3"
+    static var TEMPERATURE_RANGE_UUID = "FFF4"
     
     init (address: String, passkey: String) {
         self.address = address
@@ -25,6 +25,15 @@ public class Device {
     
     func getName() -> String {
         return "SwitchPal-" + Device.getBase32ShortAddress(self.address)
+    }
+    
+    // decode temperature in NSData received from the bluetooth device
+    public class func decodeTemperature(data: NSData) -> Float {
+        var integerPart = 0
+        var fractionPart = 0
+        data.getBytes(&integerPart, length: 1)
+        data.getBytes(&fractionPart, range: NSMakeRange(1, 1))
+        return Float(integerPart) + 0.01 * Float(fractionPart)
     }
     
     class func initFromUrl(url: String) {

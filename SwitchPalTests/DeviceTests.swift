@@ -30,4 +30,11 @@ class DeviceTests: XCTestCase {
         XCTAssert(name == "c2ga", "Pass")
     }
     
+    func testDecodeTemperature() {
+        var a = 0x061a
+        let data = NSData(bytes: &a, length: 2)
+        let temp = Device.decodeTemperature(data)
+        XCTAssert(temp-26.06<0.01, "Pass")
+    }
+    
 }
