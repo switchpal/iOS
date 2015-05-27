@@ -12,6 +12,12 @@ class DeviceInfo {
     var address: String
     var passkey: String
     
+    var SERVICE_UUID = "fff0"
+    var SWITCH_STATE_UUID = "fff1"
+    var CONTROL_MODE_UUID = "fff2"
+    var TEMPERATURE_UUID = "fff3"
+    var TEMPERATURE_RANGE_UUID = "fff4"
+    
     init (address: String, passkey: String) {
         self.address = address
         self.passkey = passkey
