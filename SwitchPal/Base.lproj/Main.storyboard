@@ -43,6 +43,7 @@
                     <connections>
                         <outlet property="scanButton" destination="9w1-Ry-AVc" id="9il-bK-HJz"/>
                         <segue destination="Y7N-8S-hja" kind="show" identifier="scanSegue" id="oMg-13-uhU"/>
+                        <segue destination="aPV-DL-X95" kind="show" identifier="mainToDeviceSegue" id="g4f-Wc-Cdd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -234,4 +235,7 @@
             <point key="canvasLocation" x="128" y="1199"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="g4f-Wc-Cdd"/>
+    </inferredMetricsTieBreakers>
 </document>
