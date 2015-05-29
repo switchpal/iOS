@@ -37,4 +37,17 @@ class DeviceTests: XCTestCase {
         XCTAssert(temp-26.06<0.01, "Pass")
     }
     
+    func testDecodeInfoString() {
+        let str = "ZNJW59nKFChX"
+        let device = Device.decodeDeviceInfoString(str)
+        XCTAssert(device.address == "64:D2:56:E7:D9:CA", "Address")
+        XCTAssert(device.passkey == "142857", "Passkey")
+    }
+    
+    func testInitFromUrl() {
+        let str = "http://getswitchpal.com/app/?device=ZNJW59nKFChX"
+        let device = Device.initFromUrl(str)
+        XCTAssert(device.address == "64:D2:56:E7:D9:CA", "Address")
+        XCTAssert(device.passkey == "142857", "Passkey")
+    }
 }

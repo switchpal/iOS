@@ -9,8 +9,8 @@
 import Foundation
 
 public class Device {
-    var address: String
-    var passkey: String
+    public var address: String
+    public var passkey: String
     
     static var SERVICE_UUID = "FFF0"
     static var SWITCH_STATE_UUID = "FFF1"
@@ -36,10 +36,40 @@ public class Device {
         return Float(integerPart) + 0.01 * Float(fractionPart)
     }
     
-    class func initFromUrl(url: String) {
+    // 
+    public class func initFromUrl(url: String) -> Device {
+        func getQueryStringParameter(url: String, param: String) -> String? {
+            let url = NSURLComponents(string: url)!
+            return (url.queryItems as! [NSURLQueryItem]).filter({ (item) in item.name == param }).first?.value!
+        }
+        let infoString = getQueryStringParameter(url, "device")
+        return Device.decodeDeviceInfoString(infoString!)
     }
     
-    class func decodeDeviceInfoString(infoString: String) {
+    //
+    public class func decodeDeviceInfoString(infoString: String) -> Device {
+        let decodedData = NSData(base64EncodedString: infoString, options: NSDataBase64DecodingOptions(rawValue: 0))!
+        
+        
+        var char = 0
+        
+        // find the address
+        var address = ""
+        for i in 0...5 {
+            decodedData.getBytes(&char, range: NSMakeRange(i, 1))
+            address += NSString(format: "%02X", char) as String
+            if (i != 5) {
+                address += ":"
+            }
+        }
+        
+        var passkey = ""
+        for i in 6...8 {
+            decodedData.getBytes(&char, range: NSMakeRange(i, 1))
+            passkey += NSString(format: "%02X", char) as String
+        }
+        
+        return Device(address: address, passkey: passkey)
     }
     
     // encode the last 20bits of a given mac address to a 4-character base32-encoded string
