@@ -37,13 +37,27 @@ public class Device {
     }
     
     // 
-    public class func initFromUrl(url: String) -> Device {
+    public class func initFromUrl(url: String) -> Device? {
         func getQueryStringParameter(url: String, param: String) -> String? {
             let url = NSURLComponents(string: url)!
             return (url.queryItems as! [NSURLQueryItem]).filter({ (item) in item.name == param }).first?.value!
         }
         let infoString = getQueryStringParameter(url, "device")
         return Device.decodeDeviceInfoString(infoString!)
+    }
+    
+    public class func initFromDefaults(defaults: NSUserDefaults) -> Device? {
+        if let address = defaults.stringForKey("address") {
+            if let passkey = defaults.stringForKey("passkey") {
+                return Device(address: address, passkey: passkey)
+            }
+        }
+        return nil
+    }
+    
+    public func writeDefaults(defaults: NSUserDefaults) {
+        defaults.setObject(self.address, forKey: "address")
+        defaults.setObject(self.passkey, forKey: "passkey")
     }
     
     //

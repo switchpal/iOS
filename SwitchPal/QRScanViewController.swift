@@ -64,6 +64,11 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 let transformed = metadataObject as! AVMetadataMachineReadableCodeObject
                 
                 println(transformed.stringValue)
+                // check if it contains a valid device info
+                if let device = Device.initFromUrl(transformed.stringValue) {
+                    let defaults = NSUserDefaults.standardUserDefaults()
+                    device.writeDefaults(defaults)
+                }
                 self.performSegueWithIdentifier("scanToDeviceSegue", sender: self)
                 
                 // ==== bounding box ====

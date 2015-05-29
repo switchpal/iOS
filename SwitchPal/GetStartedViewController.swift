@@ -15,6 +15,11 @@ class GetStartedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let device = Device.initFromDefaults(defaults) {
+            // device info is already saved
+        }
         // Do any additional setup after loading the view, typically from a nib.
     }
 

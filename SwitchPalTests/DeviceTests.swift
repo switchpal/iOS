@@ -46,7 +46,7 @@ class DeviceTests: XCTestCase {
     
     func testInitFromUrl() {
         let str = "http://getswitchpal.com/app/?device=ZNJW59nKFChX"
-        let device = Device.initFromUrl(str)
+        let device = Device.initFromUrl(str)!
         XCTAssert(device.address == "64:D2:56:E7:D9:CA", "Address")
         XCTAssert(device.passkey == "142857", "Passkey")
     }
