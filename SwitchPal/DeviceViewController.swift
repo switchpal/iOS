@@ -15,15 +15,28 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     var peripheral: CBPeripheral!
     
     var device: Device!
+    @IBOutlet weak var temperature: UILabel!
+    
+    @IBOutlet weak var controlMode: UISwitch!
+    @IBOutlet weak var switchState: UISwitch!
+    
+    var indicator: UIActivityIndicatorView!
+    var isOperationInProgress = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.Gray)
+        //indicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0)
+        indicator.frame = UIScreen.mainScreen().bounds
+        indicator.center = self.view.center
         
         let addr = "00:18:31:F1:68:C0";
         device = Device(address: addr, passkey: "")
         
         // Do any additional setup after loading the view.
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
+        showProgressOverlay()
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,6 +45,28 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     }
     
 
+    @IBAction func onSwitchStateTouchUpInside(sender: AnyObject) {
+        //println("touchUpInside")
+        //switchState.enabled = false
+        //switchState.userInteractionEnabled = false
+        showProgressOverlay()
+    }
+    
+    func showProgressOverlay() {
+        isOperationInProgress = true
+        self.view.addSubview(indicator)
+        indicator.backgroundColor = UIColor.whiteColor()
+        indicator.bringSubviewToFront(self.view)
+        indicator.startAnimating()
+    }
+    
+    func hideProgressOverlay() {
+        if (isOperationInProgress) {
+            indicator.stopAnimating()
+            indicator.removeFromSuperview()
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -127,6 +162,8 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         case Device.TEMPERATURE_UUID:
             let temp = Device.decodeTemperature(characteristic.value)
             println("temp: ", temp)
+            temperature.text = NSString(format: "%2.1f", temp) as String
+            hideProgressOverlay()
         default:
             println("data:", characteristic.value)
             println("unknown characteristic: \(characteristic)")
