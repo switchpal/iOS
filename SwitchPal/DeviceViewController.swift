@@ -16,12 +16,18 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     
     var device: Device!
     @IBOutlet weak var temperature: UILabel!
+    @IBOutlet weak var temperatureRange: UILabel!
     
     @IBOutlet weak var controlMode: UISwitch!
     @IBOutlet weak var switchState: UISwitch!
     
     var indicator: UIActivityIndicatorView!
     var isOperationInProgress = false
+    
+    var temperatureCharacteristic: CBCharacteristic!
+    var temperatureRangeCharacteristic: CBCharacteristic!
+    var controlModeCharacteristic: CBCharacteristic!
+    var switchStateCharacteristic: CBCharacteristic!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,7 +55,12 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         //println("touchUpInside")
         //switchState.enabled = false
         //switchState.userInteractionEnabled = false
-        showProgressOverlay()
+        //showProgressOverlay()
+        toggleSwitchState()
+    }
+    
+    @IBAction func onControlModeTouchUpInside(sender: AnyObject) {
+        toggleControlMode()
     }
     
     func showProgressOverlay() {
@@ -145,12 +156,23 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     
     func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!) {
         println("didDiscoverCharacteristicsForService")
-        for characteristic in service.characteristics {
-            println("characteristic", characteristic)
+        for char in service.characteristics {
+            println("characteristic", char)
+            let characteristic = char as! CBCharacteristic
             if let uuid = characteristic.UUID {
                 println("uuid: ", uuid.UUIDString)
-                if uuid.UUIDString == Device.TEMPERATURE_UUID {
-                    peripheral.readValueForCharacteristic(characteristic as! CBCharacteristic)
+                switch uuid.UUIDString {
+                case Device.TEMPERATURE_UUID:
+                    temperatureCharacteristic = characteristic
+                    peripheral.readValueForCharacteristic(characteristic)
+                case Device.TEMPERATURE_RANGE_UUID:
+                    temperatureRangeCharacteristic = characteristic
+                case Device.CONTROL_MODE_UUID:
+                    controlModeCharacteristic = characteristic
+                case Device.SWITCH_STATE_UUID:
+                    switchStateCharacteristic = characteristic
+                default:
+                    println("Unknown characteristics: ", uuid.UUIDString)
                 }
             }
         }
@@ -161,13 +183,82 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         switch characteristic.UUID.UUIDString {
         case Device.TEMPERATURE_UUID:
             let temp = Device.decodeTemperature(characteristic.value)
+            device.temperature = temp
             println("temp: ", temp)
-            temperature.text = NSString(format: "%2.1f", temp) as String
-            hideProgressOverlay()
+        case Device.SWITCH_STATE_UUID:
+            device.switchState = Device.decodeBool(characteristic.value)
+        case Device.CONTROL_MODE_UUID:
+            device.controlMode = Device.decodeBool(characteristic.value)
+        case Device.TEMPERATURE_RANGE_UUID:
+            (device.temperatureRangeMin, device.temperatureRangeMax) = Device.decodeTemperatureRange(characteristic.value)
         default:
             println("data:", characteristic.value)
             println("unknown characteristic: \(characteristic)")
         }
+        
+        updateView()
+    }
+    
+    func peripheral(peripheral: CBPeripheral!, didWriteValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
+        println("didWriteValueForCharacteristic")
+        switch characteristic.UUID.UUIDString {
+        case Device.SWITCH_STATE_UUID, Device.CONTROL_MODE_UUID, Device.TEMPERATURE_RANGE_UUID:
+            // iOS does not return the updated value for the characteristic, so we issue a read request again
+            peripheral.readValueForCharacteristic(characteristic)
+            //device.switchState = Device.decodeBool(characteristic.value)
+        default:
+            println("data:", characteristic.value)
+            println("unknown characteristic: \(characteristic)")
+        }
+        //updateView()
+    }
+    
+    func toggleControlMode() {
+        
+        var char = 0x00
+        let currentMode = device.controlMode
+        if currentMode != nil && currentMode == true {
+            // if current mode is Auto, switch to Manual
+            char = 0x00
+        } else {
+            // if current mode is Manual, or not yet initilized
+            char = 0x01
+        }
+            
+        let data = NSData(bytes: &char, length: 1)
+        peripheral.writeValue(data, forCharacteristic: controlModeCharacteristic, type:CBCharacteristicWriteType.WithResponse)
+        showProgressOverlay()
+        
+    }
+    
+    func toggleSwitchState() {
+        
+        var char = 0x00
+        let currentState = device.switchState
+        if currentState != nil && currentState == true {
+            // if current state is ON, switch to OFF
+            char = 0x00
+        } else {
+            // if current state is OFF, or not yet initialized
+            char = 0x01
+        }
+            
+        let data = NSData(bytes: &char, length: 1)
+        peripheral.writeValue(data, forCharacteristic: switchStateCharacteristic, type: CBCharacteristicWriteType.WithResponse)
+        showProgressOverlay()
+        
+    }
+    
+    func updateView() {
+        temperature.text = NSString(format: "%2.1f", device.temperature) as String
+        temperatureRange.text = NSString(format: "%2.1f°C/%2.1f°C%", device.temperatureRangeMin, device.temperatureRangeMax) as String
+        if let state = device.switchState {
+            switchState.setOn(state, animated: true)
+        }
+        if let mode = device.controlMode {
+            controlMode.setOn(mode, animated: true)
+        }
+        hideProgressOverlay()
     }
 
 }

@@ -12,6 +12,12 @@ public class Device {
     public var address: String
     public var passkey: String
     
+    public var temperature: Float
+    public var temperatureRangeMin: Float
+    public var temperatureRangeMax: Float
+    public var controlMode: Bool!
+    public var switchState: Bool!
+    
     static var SERVICE_UUID = "FFF0"
     static var SWITCH_STATE_UUID = "FFF1"
     static var CONTROL_MODE_UUID = "FFF2"
@@ -21,6 +27,12 @@ public class Device {
     init (address: String, passkey: String) {
         self.address = address
         self.passkey = passkey
+        
+        self.temperature = 0
+        self.temperatureRangeMin = 0;
+        self.temperatureRangeMax = 0;
+        self.controlMode = nil
+        self.switchState = nil
     }
     
     func getName() -> String {
@@ -34,6 +46,18 @@ public class Device {
         data.getBytes(&integerPart, length: 1)
         data.getBytes(&fractionPart, range: NSMakeRange(1, 1))
         return Float(integerPart) + 0.01 * Float(fractionPart)
+    }
+    
+    public class func decodeTemperatureRange(data: NSData) -> (Float, Float) {
+        var data1 = data.subdataWithRange(NSMakeRange(0, 2))
+        var data2 = data.subdataWithRange(NSMakeRange(2, 2))
+        return (decodeTemperature(data1), decodeTemperature(data2))
+    }
+    
+    public class func decodeBool(data: NSData) -> Bool {
+        var char = 0x00
+        data.getBytes(&char, length: 1)
+        return char != 0
     }
     
     // 

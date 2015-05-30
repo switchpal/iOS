@@ -85,6 +85,9 @@
                                 <subviews>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="igf-8g-Np3" userLabel="Mode Switch">
                                         <rect key="frame" x="187" y="56" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="onControlModeTouchUpInside:" destination="aPV-DL-X95" eventType="touchUpInside" id="slp-m2-dGt"/>
+                                        </connections>
                                     </switch>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L0q-PO-Nf9" userLabel="State Switch">
                                         <rect key="frame" x="63" y="56" width="51" height="31"/>
@@ -144,6 +147,7 @@
                         <outlet property="controlMode" destination="igf-8g-Np3" id="voW-39-hCj"/>
                         <outlet property="switchState" destination="L0q-PO-Nf9" id="JaE-7w-Vfw"/>
                         <outlet property="temperature" destination="w6V-Vu-fPh" id="UCk-mZ-mBv"/>
+                        <outlet property="temperatureRange" destination="oBq-nU-w75" id="V5N-9Z-Dxk"/>
                         <segue destination="1Ro-pM-7yR" kind="show" identifier="configSegue" id="s0H-GB-9Zi"/>
                     </connections>
                 </viewController>
