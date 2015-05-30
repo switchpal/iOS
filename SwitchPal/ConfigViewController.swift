@@ -9,7 +9,10 @@
 import UIKit
 
 class ConfigViewController: UIViewController {
-
+    
+    @IBOutlet weak var temperatureRangeMin: UITextField!
+    @IBOutlet weak var temperatureRangeMax: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,7 +23,6 @@ class ConfigViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -32,4 +34,38 @@ class ConfigViewController: UIViewController {
     }
     */
 
+    @IBAction func onCancelTouchUpInside(sender: AnyObject) {
+        performSegueWithIdentifier("configToDeviceSegue", sender: self)
+    }
+    
+    @IBAction func onSaveTouchUpInside(sender: AnyObject) {
+        let max = (temperatureRangeMax!.text as NSString).floatValue
+        let min = (temperatureRangeMin!.text as NSString).floatValue
+        println("min: \(min), max: \(max)")
+        
+        if (min < 20 || min > 32 || max < 20 || max > 32) {
+            let alert = UIAlertView(title: "Error", message: "Temperature should between 20 to 32, and max should be larger than min", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            return
+        }
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let device = Device.initFromDefaults(defaults) {
+            device.temperatureRangeMin = min
+            device.temperatureRangeMax = max
+            device.writeDefaults(defaults)
+            
+            performSegueWithIdentifier("configToDeviceSegue", sender: self)
+        }
+        //println("min: ", temperatureRangeMin!.text!)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        //
+        if segue.identifier == "configToDeviceSegue" {
+            println("prepare configToDeviceSegure")
+            let ctl = segue.destinationViewController as! DeviceViewController
+            ctl.fromView = "config"
+        }
+    }
 }

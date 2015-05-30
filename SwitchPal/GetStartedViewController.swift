@@ -19,6 +19,7 @@ class GetStartedViewController: UIViewController {
         let defaults = NSUserDefaults.standardUserDefaults()
         if let device = Device.initFromDefaults(defaults) {
             // device info is already saved
+            self.performSegueWithIdentifier("mainToDeviceSegue", sender: self)
         }
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -32,8 +33,8 @@ class GetStartedViewController: UIViewController {
     @IBAction func scan(sender: UIButton) {
         println("lets scan")
         
-        //self.performSegueWithIdentifier("scanSegue", sender: self)
-        self.performSegueWithIdentifier("mainToDeviceSegue", sender: self)
+        self.performSegueWithIdentifier("scanSegue", sender: self)
+        //self.performSegueWithIdentifier("mainToDeviceSegue", sender: self)
     }
 }
 

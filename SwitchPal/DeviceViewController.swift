@@ -15,9 +15,9 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     var peripheral: CBPeripheral!
     
     var device: Device!
-    @IBOutlet weak var temperature: UILabel!
-    @IBOutlet weak var temperatureRange: UILabel!
     
+    @IBOutlet weak var temperature: UILabel!
+    @IBOutlet weak var temperatureRange: UIButton!
     @IBOutlet weak var controlMode: UISwitch!
     @IBOutlet weak var switchState: UISwitch!
     
@@ -29,6 +29,12 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     var controlModeCharacteristic: CBCharacteristic!
     var switchStateCharacteristic: CBCharacteristic!
     
+    
+    // How does the user come to this ViewController
+    // "scan": coming from QRCode, just get the temperature
+    // "config": if coming from Temperature config, send user's config to the device
+    var fromView: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -37,8 +43,13 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         indicator.frame = UIScreen.mainScreen().bounds
         indicator.center = self.view.center
         
-        let addr = "00:18:31:F1:68:C0";
-        device = Device(address: addr, passkey: "")
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let _device = Device.initFromDefaults(defaults) {
+            device = _device
+        } else {
+            let addr = "00:18:31:F1:68:C0";
+            device = Device(address: addr, passkey: "")
+        }
         
         // Do any additional setup after loading the view.
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
@@ -61,6 +72,13 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     
     @IBAction func onControlModeTouchUpInside(sender: AnyObject) {
         toggleControlMode()
+    }
+    
+    @IBAction func onTemperatureRangeTouchUpInside(sender: AnyObject) {
+        self.centralManager.cancelPeripheralConnection(self.peripheral)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        device.writeDefaults(defaults)
+        self.performSegueWithIdentifier("configSegue", sender: self)
     }
     
     func showProgressOverlay() {
@@ -164,9 +182,15 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
                 switch uuid.UUIDString {
                 case Device.TEMPERATURE_UUID:
                     temperatureCharacteristic = characteristic
-                    peripheral.readValueForCharacteristic(characteristic)
+                    if self.fromView == nil {
+                        peripheral.readValueForCharacteristic(characteristic)
+                    }
                 case Device.TEMPERATURE_RANGE_UUID:
                     temperatureRangeCharacteristic = characteristic
+                    if self.fromView != nil && self.fromView == "config" {
+                        let data = NSData()
+                        peripheral.writeValue(device.encodeTemperatureRange(), forCharacteristic: characteristic, type: CBCharacteristicWriteType.WithResponse)
+                    }
                 case Device.CONTROL_MODE_UUID:
                     controlModeCharacteristic = characteristic
                 case Device.SWITCH_STATE_UUID:
@@ -246,12 +270,11 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         let data = NSData(bytes: &char, length: 1)
         peripheral.writeValue(data, forCharacteristic: switchStateCharacteristic, type: CBCharacteristicWriteType.WithResponse)
         showProgressOverlay()
-        
     }
     
     func updateView() {
         temperature.text = NSString(format: "%2.1f", device.temperature) as String
-        temperatureRange.text = NSString(format: "%2.1f°C/%2.1f°C%", device.temperatureRangeMin, device.temperatureRangeMax) as String
+        temperatureRange.setTitle(NSString(format: "%2.1f°C/%2.1f°C%", device.temperatureRangeMin, device.temperatureRangeMax) as String, forState: UIControlState.Normal)
         if let state = device.switchState {
             switchState.setOn(state, animated: true)
         }

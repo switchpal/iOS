@@ -54,6 +54,19 @@ public class Device {
         return (decodeTemperature(data1), decodeTemperature(data2))
     }
     
+    public func encodeTemperatureRange() -> NSData {
+        let min = temperatureRangeMin
+        let max = temperatureRangeMax
+        
+        var bytes: [UInt8] = []
+        bytes.append(UInt8(min))
+        bytes.append(UInt8((min - Float(Int(min)))*100))
+        bytes.append(UInt8(max))
+        bytes.append(UInt8((max - Float(Int(max)))*100))
+        
+        return NSData(bytes: bytes, length: bytes.count)
+    }
+    
     public class func decodeBool(data: NSData) -> Bool {
         var char = 0x00
         data.getBytes(&char, length: 1)
@@ -73,7 +86,13 @@ public class Device {
     public class func initFromDefaults(defaults: NSUserDefaults) -> Device? {
         if let address = defaults.stringForKey("address") {
             if let passkey = defaults.stringForKey("passkey") {
-                return Device(address: address, passkey: passkey)
+                let device = Device(address: address, passkey: passkey)
+                device.switchState = defaults.boolForKey("switchState")
+                device.controlMode = defaults.boolForKey("controlMode")
+                device.temperature = defaults.floatForKey("temperature")
+                device.temperatureRangeMin = defaults.floatForKey("temperatureRangeMin")
+                device.temperatureRangeMax = defaults.floatForKey("temperatureRangeMax")
+                return device
             }
         }
         return nil
@@ -82,6 +101,15 @@ public class Device {
     public func writeDefaults(defaults: NSUserDefaults) {
         defaults.setObject(self.address, forKey: "address")
         defaults.setObject(self.passkey, forKey: "passkey")
+        if let state = self.switchState {
+            defaults.setBool(self.switchState, forKey: "switchState")
+        }
+        if let mode = self.controlMode {
+            defaults.setBool(self.controlMode, forKey: "controlMode")
+        }
+        defaults.setFloat(self.temperature, forKey: "temperature")
+        defaults.setFloat(self.temperatureRangeMin, forKey: "temperatureRangeMin")
+        defaults.setFloat(self.temperatureRangeMax, forKey: "temperatureRangeMax")
     }
     
     //
@@ -137,4 +165,5 @@ public class Device {
         }
         return a
     }
+    
 }

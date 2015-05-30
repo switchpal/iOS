@@ -15,12 +15,13 @@ import AVFoundation
 class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
     
     var boundingBox: BoundingBoxView!
+    var avCaptureSession: AVCaptureSession!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        let avCaptureSession = AVCaptureSession()
+        avCaptureSession = AVCaptureSession()
         let avCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         var error: NSError?;
         if let avCaptureDeviceInput = AVCaptureDeviceInput.deviceInputWithDevice(avCaptureDevice, error: &error) as? AVCaptureDeviceInput {
@@ -66,10 +67,13 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                 println(transformed.stringValue)
                 // check if it contains a valid device info
                 if let device = Device.initFromUrl(transformed.stringValue) {
+                    avCaptureSession.stopRunning()
                     let defaults = NSUserDefaults.standardUserDefaults()
                     device.writeDefaults(defaults)
+                    self.performSegueWithIdentifier("scanToDeviceSegue", sender: self)
+                } else {
+                    println("unknown url found: \(transformed.stringValue)")
                 }
-                self.performSegueWithIdentifier("scanToDeviceSegue", sender: self)
                 
                 // ==== bounding box ====
                 boundingBox.frame = transformed.bounds
