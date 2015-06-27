@@ -13,6 +13,7 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
 
     var centralManager: CBCentralManager!
     var peripheral: CBPeripheral!
+    var queue: DeviceOperationQueue!
     
     var device: Device!
     
@@ -106,6 +107,7 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     }
     */
     
+    // only start the scanning if the bluetooth is turned on
     func centralManagerDidUpdateState(central: CBCentralManager!) {
         println("state: \(central.state.rawValue)")
         
@@ -127,6 +129,7 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         }
     }
     
+    // stop the scan after we find the device, and connect to the device
     func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
         println("find a peripheral")
         if peripheral.name == device.getName() {
@@ -143,12 +146,15 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         }
     }
     
+    // device is connected, lets discover the services
     func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
         println("connected")
         peripheral.delegate = self
         peripheral.discoverServices(nil)
+        queue = DeviceOperationQueue(peripheral: peripheral)
     }
     
+    // for some reason, device is disconnected
     func centralManager(central: CBCentralManager!, didDisconnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
         println("disconnected")
     }
@@ -182,9 +188,6 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
                 switch uuid.UUIDString {
                 case Device.TEMPERATURE_UUID:
                     temperatureCharacteristic = characteristic
-                    if self.fromView == nil {
-                        peripheral.readValueForCharacteristic(characteristic)
-                    }
                 case Device.TEMPERATURE_RANGE_UUID:
                     temperatureRangeCharacteristic = characteristic
                     if self.fromView != nil && self.fromView == "config" {
@@ -199,6 +202,12 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
                     println("Unknown characteristics: ", uuid.UUIDString)
                 }
             }
+            
+            // read the characteristics on startup
+            if self.fromView == nil {
+                queue.add(DeviceReadOperation(characteristic: characteristic))
+            }
+
         }
     }
     
@@ -218,6 +227,11 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         default:
             println("data:", characteristic.value)
             println("unknown characteristic: \(characteristic)")
+        }
+        
+        queue.markCurrentDone()
+        if (!queue.isEmpty()) {
+            queue.executeNextIfAny()
         }
         
         updateView()
@@ -250,7 +264,8 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         }
             
         let data = NSData(bytes: &char, length: 1)
-        peripheral.writeValue(data, forCharacteristic: controlModeCharacteristic, type:CBCharacteristicWriteType.WithResponse)
+        queue.add(DeviceWriteOperation(characteristic: controlModeCharacteristic, data: data))
+        //peripheral.writeValue(data, forCharacteristic: controlModeCharacteristic, type:CBCharacteristicWriteType.WithResponse)
         showProgressOverlay()
         
     }
@@ -268,7 +283,8 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         }
             
         let data = NSData(bytes: &char, length: 1)
-        peripheral.writeValue(data, forCharacteristic: switchStateCharacteristic, type: CBCharacteristicWriteType.WithResponse)
+        queue.add(DeviceWriteOperation(characteristic: switchStateCharacteristic, data: data))
+        //peripheral.writeValue(data, forCharacteristic: switchStateCharacteristic, type: CBCharacteristicWriteType.WithResponse)
         showProgressOverlay()
     }
     

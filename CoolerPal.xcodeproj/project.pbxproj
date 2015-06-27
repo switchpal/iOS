@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4591579B1B3EF37C00F52CA7 /* DeviceOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4591579A1B3EF37C00F52CA7 /* DeviceOperationQueue.swift */; };
 		459B81AC1B15ADE700A9714C /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B81AB1B15ADE700A9714C /* DeviceTests.swift */; };
 		459B81AE1B15AEB600A9714C /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B81AD1B15AEB600A9714C /* Device.swift */; };
 		45A4B8ED1B0C233E0089A469 /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A4B8EC1B0C233E0089A469 /* BoundingBoxView.swift */; };
@@ -29,7 +30,6 @@
 		45C26C101B1885530059D4FF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C26C061B1885530059D4FF /* MobileCoreServices.framework */; };
 		45C26C111B1885530059D4FF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C26C071B1885530059D4FF /* QuartzCore.framework */; };
 		45C26C121B1885530059D4FF /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C26C081B1885530059D4FF /* Security.framework */; };
-		45C26C131B1885530059D4FF /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C26C091B1885530059D4FF /* StoreKit.framework */; };
 		45C26C141B1885530059D4FF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C26C0A1B1885530059D4FF /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4591579A1B3EF37C00F52CA7 /* DeviceOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceOperationQueue.swift; sourceTree = "<group>"; };
 		459B81AB1B15ADE700A9714C /* DeviceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTests.swift; sourceTree = "<group>"; };
 		459B81AD1B15AEB600A9714C /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		45A4B8EC1B0C233E0089A469 /* BoundingBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
@@ -70,7 +71,6 @@
 		45C26C061B1885530059D4FF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		45C26C071B1885530059D4FF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		45C26C081B1885530059D4FF /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		45C26C091B1885530059D4FF /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		45C26C0A1B1885530059D4FF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -87,7 +87,6 @@
 				45C26C101B1885530059D4FF /* MobileCoreServices.framework in Frameworks */,
 				45C26C111B1885530059D4FF /* QuartzCore.framework in Frameworks */,
 				45C26C121B1885530059D4FF /* Security.framework in Frameworks */,
-				45C26C131B1885530059D4FF /* StoreKit.framework in Frameworks */,
 				45C26C141B1885530059D4FF /* SystemConfiguration.framework in Frameworks */,
 				45C26C001B1884E40059D4FF /* CFNetwork.framework in Frameworks */,
 				45C26BFE1B1884A20059D4FF /* Parse.framework in Frameworks */,
@@ -121,6 +120,7 @@
 			children = (
 				459B81AD1B15AEB600A9714C /* Device.swift */,
 				45A4B8EC1B0C233E0089A469 /* BoundingBoxView.swift */,
+				4591579A1B3EF37C00F52CA7 /* DeviceOperationQueue.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -194,7 +194,6 @@
 				45C26C061B1885530059D4FF /* MobileCoreServices.framework */,
 				45C26C071B1885530059D4FF /* QuartzCore.framework */,
 				45C26C081B1885530059D4FF /* Security.framework */,
-				45C26C091B1885530059D4FF /* StoreKit.framework */,
 				45C26C0A1B1885530059D4FF /* SystemConfiguration.framework */,
 				45C26BFF1B1884E40059D4FF /* CFNetwork.framework */,
 				45C26BFB1B1884A20059D4FF /* Bolts.framework */,
@@ -253,6 +252,11 @@
 					45AE73CD1B0BA72400DC3B90 = {
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = V79KFBF2UT;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 					45AE73E21B0BA72400DC3B90 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -306,6 +310,7 @@
 				45A4B8EF1B0C23EE0089A469 /* DeviceViewController.swift in Sources */,
 				45A4B8ED1B0C233E0089A469 /* BoundingBoxView.swift in Sources */,
 				45A4B8F51B0C31080089A469 /* ConfigViewController.swift in Sources */,
+				4591579B1B3EF37C00F52CA7 /* DeviceOperationQueue.swift in Sources */,
 				45A4B8F11B0C25350089A469 /* QRScanViewController.swift in Sources */,
 				45AE73D41B0BA72400DC3B90 /* AppDelegate.swift in Sources */,
 				459B81AE1B15AEB600A9714C /* Device.swift in Sources */,
