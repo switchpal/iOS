@@ -51,12 +51,12 @@
 		45A4B8F01B0C25350089A469 /* QRScanViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScanViewController.swift; sourceTree = "<group>"; };
 		45A4B8F21B0C25BD0089A469 /* GetStartedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetStartedViewController.swift; sourceTree = "<group>"; };
 		45A4B8F41B0C31080089A469 /* ConfigViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
-		45AE73CE1B0BA72400DC3B90 /* SwitchPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwitchPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		45AE73CE1B0BA72400DC3B90 /* CoolerPal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoolerPal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45AE73D21B0BA72400DC3B90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45AE73D31B0BA72400DC3B90 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		45AE73D81B0BA72400DC3B90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45AE73DA1B0BA72400DC3B90 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		45AE73E31B0BA72400DC3B90 /* SwitchPalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwitchPalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		45AE73E31B0BA72400DC3B90 /* CoolerPalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoolerPalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45AE73E81B0BA72400DC3B90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45AE73E91B0BA72400DC3B90 /* SwitchPalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchPalTests.swift; sourceTree = "<group>"; };
 		45C26BFB1B1884A20059D4FF /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Frameworks/Bolts.framework; sourceTree = "<group>"; };
@@ -138,8 +138,8 @@
 		45AE73CF1B0BA72400DC3B90 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				45AE73CE1B0BA72400DC3B90 /* SwitchPal.app */,
-				45AE73E31B0BA72400DC3B90 /* SwitchPalTests.xctest */,
+				45AE73CE1B0BA72400DC3B90 /* CoolerPal.app */,
+				45AE73E31B0BA72400DC3B90 /* CoolerPalTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,9 +206,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		45AE73CD1B0BA72400DC3B90 /* SwitchPal */ = {
+		45AE73CD1B0BA72400DC3B90 /* CoolerPal */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 45AE73ED1B0BA72400DC3B90 /* Build configuration list for PBXNativeTarget "SwitchPal" */;
+			buildConfigurationList = 45AE73ED1B0BA72400DC3B90 /* Build configuration list for PBXNativeTarget "CoolerPal" */;
 			buildPhases = (
 				45AE73CA1B0BA72400DC3B90 /* Sources */,
 				45AE73CB1B0BA72400DC3B90 /* Frameworks */,
@@ -218,14 +218,14 @@
 			);
 			dependencies = (
 			);
-			name = SwitchPal;
+			name = CoolerPal;
 			productName = SwitchPal;
-			productReference = 45AE73CE1B0BA72400DC3B90 /* SwitchPal.app */;
+			productReference = 45AE73CE1B0BA72400DC3B90 /* CoolerPal.app */;
 			productType = "com.apple.product-type.application";
 		};
-		45AE73E21B0BA72400DC3B90 /* SwitchPalTests */ = {
+		45AE73E21B0BA72400DC3B90 /* CoolerPalTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 45AE73F01B0BA72400DC3B90 /* Build configuration list for PBXNativeTarget "SwitchPalTests" */;
+			buildConfigurationList = 45AE73F01B0BA72400DC3B90 /* Build configuration list for PBXNativeTarget "CoolerPalTests" */;
 			buildPhases = (
 				45AE73DF1B0BA72400DC3B90 /* Sources */,
 				45AE73E01B0BA72400DC3B90 /* Frameworks */,
@@ -236,9 +236,9 @@
 			dependencies = (
 				45AE73E51B0BA72400DC3B90 /* PBXTargetDependency */,
 			);
-			name = SwitchPalTests;
+			name = CoolerPalTests;
 			productName = SwitchPalTests;
-			productReference = 45AE73E31B0BA72400DC3B90 /* SwitchPalTests.xctest */;
+			productReference = 45AE73E31B0BA72400DC3B90 /* CoolerPalTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -260,7 +260,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 45AE73C91B0BA72400DC3B90 /* Build configuration list for PBXProject "SwitchPal" */;
+			buildConfigurationList = 45AE73C91B0BA72400DC3B90 /* Build configuration list for PBXProject "CoolerPal" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -273,8 +273,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				45AE73CD1B0BA72400DC3B90 /* SwitchPal */,
-				45AE73E21B0BA72400DC3B90 /* SwitchPalTests */,
+				45AE73CD1B0BA72400DC3B90 /* CoolerPal */,
+				45AE73E21B0BA72400DC3B90 /* CoolerPalTests */,
 			);
 		};
 /* End PBXProject section */
@@ -327,7 +327,7 @@
 /* Begin PBXTargetDependency section */
 		45AE73E51B0BA72400DC3B90 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 45AE73CD1B0BA72400DC3B90 /* SwitchPal */;
+			target = 45AE73CD1B0BA72400DC3B90 /* CoolerPal */;
 			targetProxy = 45AE73E41B0BA72400DC3B90 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -441,7 +441,7 @@
 				INFOPLIST_FILE = SwitchPal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CoolerPal;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -461,7 +461,7 @@
 				INFOPLIST_FILE = SwitchPal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CoolerPal;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -481,7 +481,7 @@
 				);
 				INFOPLIST_FILE = SwitchPalTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CoolerPalTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwitchPal.app/SwitchPal";
 			};
 			name = Debug;
@@ -496,7 +496,7 @@
 				);
 				INFOPLIST_FILE = SwitchPalTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = CoolerPalTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwitchPal.app/SwitchPal";
 			};
 			name = Release;
@@ -504,7 +504,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		45AE73C91B0BA72400DC3B90 /* Build configuration list for PBXProject "SwitchPal" */ = {
+		45AE73C91B0BA72400DC3B90 /* Build configuration list for PBXProject "CoolerPal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				45AE73EB1B0BA72400DC3B90 /* Debug */,
@@ -513,7 +513,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		45AE73ED1B0BA72400DC3B90 /* Build configuration list for PBXNativeTarget "SwitchPal" */ = {
+		45AE73ED1B0BA72400DC3B90 /* Build configuration list for PBXNativeTarget "CoolerPal" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				45AE73EE1B0BA72400DC3B90 /* Debug */,
@@ -522,7 +522,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		45AE73F01B0BA72400DC3B90 /* Build configuration list for PBXNativeTarget "SwitchPalTests" */ = {
+		45AE73F01B0BA72400DC3B90 /* Build configuration list for PBXNativeTarget "CoolerPalTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				45AE73F11B0BA72400DC3B90 /* Debug */,
