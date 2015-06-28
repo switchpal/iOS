@@ -8,7 +8,7 @@
         <!--Get Started-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="Get Started" customClass="GetStartedViewController" customModule="CoolerPal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="Get Started" customClass="MainViewController" customModule="CoolerPal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -313,6 +313,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="g4f-Wc-Cdd"/>
-        <segue reference="0vR-Ge-uiQ"/>
+        <segue reference="oMg-13-uhU"/>
     </inferredMetricsTieBreakers>
 </document>

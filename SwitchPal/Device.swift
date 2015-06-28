@@ -110,6 +110,7 @@ public class Device {
         defaults.setFloat(self.temperature, forKey: "temperature")
         defaults.setFloat(self.temperatureRangeMin, forKey: "temperatureRangeMin")
         defaults.setFloat(self.temperatureRangeMax, forKey: "temperatureRangeMax")
+        defaults.synchronize()
     }
     
     //

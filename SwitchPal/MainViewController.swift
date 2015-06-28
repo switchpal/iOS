@@ -8,20 +8,26 @@
 
 import UIKit
 
-class GetStartedViewController: UIViewController {
+class MainViewController: UIViewController {
     
 
     @IBOutlet weak var scanButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
         
         let defaults = NSUserDefaults.standardUserDefaults()
         if let device = Device.initFromDefaults(defaults) {
             // device info is already saved
+            println("found previously registered device")
             self.performSegueWithIdentifier("mainToDeviceSegue", sender: self)
         }
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
