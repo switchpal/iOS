@@ -124,6 +124,15 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         UIApplication.sharedApplication().openURL(NSURL(string:"http://www.getcoolerpal.com/")!)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "configSegue" {
+            println("prepare configSegue")
+            let ctl = segue.destinationViewController as! ConfigViewController
+            ctl.min = device.temperatureRangeMin
+            ctl.max = device.temperatureRangeMax
+        }
+    }
+    
     func showProgressOverlay() {
         isOperationInProgress = true
         self.view.addSubview(indicator)
@@ -257,6 +266,7 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         }
     }
     
+    // if receive response from the device, either from a read request, or a notification
     func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
         println("didUpdateValueForCharacteristic")
         switch characteristic.UUID.UUIDString {
@@ -275,6 +285,7 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
             println("unknown characteristic: \(characteristic)")
         }
         
+        // this usually indicates that the previous request is complete, we can proceed to the next one
         queue.markCurrentDone()
         if (!queue.isEmpty()) {
             queue.executeNextIfAny()
@@ -283,8 +294,13 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         updateView()
     }
     
+    //
     func peripheral(peripheral: CBPeripheral!, didWriteValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
-        println("didWriteValueForCharacteristic")
+        //println("didWriteValueForCharacteristic")
+        if (error != nil) {
+            println("didWriteValueForCharacteristic error:" + error.localizedDescription)
+        }
+        
         switch characteristic.UUID.UUIDString {
         case Device.SWITCH_STATE_UUID, Device.CONTROL_MODE_UUID, Device.TEMPERATURE_RANGE_UUID:
             // iOS does not return the updated value for the characteristic, so we issue a read request again

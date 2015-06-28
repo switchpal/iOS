@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="CoolerPal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKN-3H-LzU">
-                                <rect key="frame" x="262" y="77" width="76.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoolerPal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKN-3H-LzU">
+                                <rect key="frame" x="263" y="77" width="75" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -63,8 +63,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="CoolerPal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S93-DD-Nah">
-                                <rect key="frame" x="261" y="91" width="76.5" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoolerPal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S93-DD-Nah">
+                                <rect key="frame" x="262" y="91" width="75" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -76,7 +76,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="°C" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rl0-gE-yzi">
-                                <rect key="frame" x="352" y="313" width="20" height="21"/>
+                                <rect key="frame" x="352" y="313" width="19.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -185,7 +185,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoolerPal Config" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8EB-bt-kYB">
-                                <rect key="frame" x="239" y="52" width="131" height="21"/>
+                                <rect key="frame" x="239" y="52" width="130.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -223,49 +223,67 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Q4-6F-fKx" userLabel="Items">
-                                <rect key="frame" x="164" y="110" width="272" height="205"/>
+                                <rect key="frame" x="150" y="110" width="300" height="205"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min Temperature (°C):" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqu-dU-sMd">
-                                        <rect key="frame" x="0.0" y="44" width="167" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min Temperature" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqu-dU-sMd">
+                                        <rect key="frame" x="0.0" y="44" width="129" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max Temperature (°C):" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3t0-ry-UjZ">
-                                        <rect key="frame" x="0.0" y="91" width="172" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Max Temperature" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3t0-ry-UjZ">
+                                        <rect key="frame" x="0.0" y="91" width="133.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AaP-TY-z52">
-                                        <rect key="frame" x="175" y="40" width="60" height="30"/>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wlz-bu-qdv">
+                                        <rect key="frame" x="199" y="40" width="118" height="31"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="j0p-FW-WOE"/>
+                                            <constraint firstAttribute="width" constant="114" id="lyt-Ob-yGn"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l8h-at-sjN">
-                                        <rect key="frame" x="175" y="83" width="59.5" height="30"/>
+                                        <connections>
+                                            <action selector="onTemperatureRangeMinChanged:" destination="1Ro-pM-7yR" eventType="valueChanged" id="EnU-zA-s57"/>
+                                        </connections>
+                                    </slider>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" (24.1°C)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ahw-XN-80j">
+                                        <rect key="frame" x="131" y="44" width="66.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" (26.1°C)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0K-IL-pXX">
+                                        <rect key="frame" x="133" y="91" width="66.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="iB3-Ko-RcI">
+                                        <rect key="frame" x="200.5" y="88" width="118" height="31"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="60" id="cue-6s-Z5d"/>
+                                            <constraint firstAttribute="width" constant="114" id="z3d-if-59X"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                    </textField>
+                                        <connections>
+                                            <action selector="onTemperatureRangeMaxChanged:" destination="1Ro-pM-7yR" eventType="valueChanged" id="MaH-es-dKx"/>
+                                        </connections>
+                                    </slider>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="205" id="3X6-Ni-4V3"/>
+                                    <constraint firstItem="iqu-dU-sMd" firstAttribute="bottom" secondItem="Wlz-bu-qdv" secondAttribute="bottom" constant="-5.5" id="5tc-9Y-D3a"/>
                                     <constraint firstItem="3t0-ry-UjZ" firstAttribute="top" secondItem="iqu-dU-sMd" secondAttribute="bottom" constant="27" id="88X-eQ-ELh"/>
-                                    <constraint firstItem="iqu-dU-sMd" firstAttribute="baseline" secondItem="AaP-TY-z52" secondAttribute="baseline" constant="1" id="Axp-ln-dma"/>
-                                    <constraint firstItem="l8h-at-sjN" firstAttribute="leading" secondItem="3t0-ry-UjZ" secondAttribute="trailing" constant="3" id="Ckh-NE-fpa"/>
-                                    <constraint firstItem="AaP-TY-z52" firstAttribute="leading" secondItem="iqu-dU-sMd" secondAttribute="trailing" constant="8" id="Do6-LW-vaT"/>
+                                    <constraint firstItem="q0K-IL-pXX" firstAttribute="leading" secondItem="3t0-ry-UjZ" secondAttribute="trailing" constant="-0.5" id="BaY-H9-aVY"/>
+                                    <constraint firstItem="iB3-Ko-RcI" firstAttribute="bottom" secondItem="3t0-ry-UjZ" secondAttribute="bottom" constant="6.5" id="Bf3-lz-bB8"/>
                                     <constraint firstItem="iqu-dU-sMd" firstAttribute="leading" secondItem="0Q4-6F-fKx" secondAttribute="leading" id="Hpy-OA-VAl"/>
-                                    <constraint firstAttribute="width" constant="272" id="WaY-eF-c1y"/>
+                                    <constraint firstItem="ahw-XN-80j" firstAttribute="leading" secondItem="iqu-dU-sMd" secondAttribute="trailing" constant="2" id="Jzq-MV-EUv"/>
+                                    <constraint firstItem="ahw-XN-80j" firstAttribute="baseline" secondItem="iqu-dU-sMd" secondAttribute="baseline" constant="0.5" id="LXD-LL-BAb"/>
+                                    <constraint firstItem="3t0-ry-UjZ" firstAttribute="baseline" secondItem="q0K-IL-pXX" secondAttribute="baseline" id="Rnc-sZ-jdB"/>
+                                    <constraint firstAttribute="width" constant="300" id="WaY-eF-c1y"/>
                                     <constraint firstItem="3t0-ry-UjZ" firstAttribute="leading" secondItem="0Q4-6F-fKx" secondAttribute="leading" id="dDB-kS-C1v"/>
                                     <constraint firstItem="iqu-dU-sMd" firstAttribute="top" secondItem="0Q4-6F-fKx" secondAttribute="top" constant="44" id="dLG-Mb-E3B"/>
-                                    <constraint firstItem="l8h-at-sjN" firstAttribute="baseline" secondItem="3t0-ry-UjZ" secondAttribute="baseline" constant="-4.5" id="yVp-Lz-YJi"/>
+                                    <constraint firstItem="iB3-Ko-RcI" firstAttribute="leading" secondItem="q0K-IL-pXX" secondAttribute="trailing" constant="3" id="jsG-ER-aDT"/>
+                                    <constraint firstItem="Wlz-bu-qdv" firstAttribute="leading" secondItem="ahw-XN-80j" secondAttribute="trailing" constant="4" id="oxT-i8-QiP"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -280,8 +298,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="temperatureRangeMax" destination="l8h-at-sjN" id="mfb-za-d1F"/>
-                        <outlet property="temperatureRangeMin" destination="AaP-TY-z52" id="Wzp-Ik-96n"/>
+                        <outlet property="temperatureRangeMaxLabel" destination="q0K-IL-pXX" id="UUO-RX-20r"/>
+                        <outlet property="temperatureRangeMaxSlider" destination="iB3-Ko-RcI" id="DUh-Om-07v"/>
+                        <outlet property="temperatureRangeMinLabel" destination="ahw-XN-80j" id="Blj-If-yWH"/>
+                        <outlet property="temperatureRangeMinSlider" destination="Wlz-bu-qdv" id="umd-4L-zce"/>
                         <segue destination="aPV-DL-X95" kind="show" identifier="configToDeviceSegue" id="fTv-9z-UXK"/>
                     </connections>
                 </viewController>
@@ -312,7 +332,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="g4f-Wc-Cdd"/>
         <segue reference="0vR-Ge-uiQ"/>
+        <segue reference="fTv-9z-UXK"/>
     </inferredMetricsTieBreakers>
 </document>

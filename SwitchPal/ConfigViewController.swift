@@ -10,13 +10,21 @@ import UIKit
 
 class ConfigViewController: UIViewController {
     
-    @IBOutlet weak var temperatureRangeMin: UITextField!
-    @IBOutlet weak var temperatureRangeMax: UITextField!
+    @IBOutlet weak var temperatureRangeMinSlider: UISlider!
+    @IBOutlet weak var temperatureRangeMaxSlider: UISlider!
+    @IBOutlet weak var temperatureRangeMinLabel: UILabel!
+    @IBOutlet weak var temperatureRangeMaxLabel: UILabel!
+    
+    var min: Float = 24
+    var max: Float = 28
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.temperatureRangeMinSlider.setValue((min-MIN) / (MAX-MIN), animated: false)
+        self.temperatureRangeMaxSlider.setValue((max-MIN) / (MAX-MIN), animated: false)
+        self.updateFromSliders()
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,14 +41,29 @@ class ConfigViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    let MIN:Float = 20
+    let MAX:Float = 32
+    
+    func updateFromSliders() {
+        self.min = MIN  + temperatureRangeMinSlider.value * (MAX-MIN)
+        self.max = MIN  + temperatureRangeMaxSlider.value * (MAX-MIN)
+        self.temperatureRangeMinLabel.text = NSString(format: "(%.1f°C)", min) as String
+        self.temperatureRangeMaxLabel.text = NSString(format: "(%.1f°C)", max) as String
+    }
+    
+    @IBAction func onTemperatureRangeMinChanged(sender: AnyObject) {
+        updateFromSliders()
+    }
+
+    @IBAction func onTemperatureRangeMaxChanged(sender: AnyObject) {
+        updateFromSliders()
+    }
 
     @IBAction func onCancelTouchUpInside(sender: AnyObject) {
         performSegueWithIdentifier("configToDeviceSegue", sender: self)
     }
     
     @IBAction func onSaveTouchUpInside(sender: AnyObject) {
-        let max = (temperatureRangeMax!.text as NSString).floatValue
-        let min = (temperatureRangeMin!.text as NSString).floatValue
         println("min: \(min), max: \(max)")
         
         if (min < 20 || min > 32 || max < 20 || max > 32) {

@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = mainVC
         self.window?.makeKeyAndVisible()
         
-        
         let defaults = NSUserDefaults.standardUserDefaults()
         if let device = Device.initFromDefaults(defaults) {
             // device info is already saved
