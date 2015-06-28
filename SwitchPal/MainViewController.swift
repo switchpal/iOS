@@ -21,13 +21,6 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        let defaults = NSUserDefaults.standardUserDefaults()
-        if let device = Device.initFromDefaults(defaults) {
-            // device info is already saved
-            println("found previously registered device")
-            self.performSegueWithIdentifier("mainToDeviceSegue", sender: self)
-        }
     }
 
     override func didReceiveMemoryWarning() {

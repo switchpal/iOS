@@ -23,6 +23,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             clientKey: "C90NNvD1dSHFolPdxbFMWYuEtsDbWhvh9HauSOJv")
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainVC = storyboard.instantiateInitialViewController() as! UIViewController
+        self.window?.rootViewController = mainVC
+        self.window?.makeKeyAndVisible()
+        
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        if let device = Device.initFromDefaults(defaults) {
+            // device info is already saved
+            println("found previously registered device")
+            let deviceVC = storyboard.instantiateViewControllerWithIdentifier("DeviceVC") as! UIViewController
+            //mainVC.performSegueWithIdentifier("mainToDeviceSegue", sender: self)
+            mainVC.presentViewController(deviceVC, animated: false, completion: nil)
+        }
         
         return true
     }

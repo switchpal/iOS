@@ -54,7 +54,7 @@
         <!--Device-->
         <scene sceneID="afP-wk-nES">
             <objects>
-                <viewController id="aPV-DL-X95" userLabel="Device" customClass="DeviceViewController" customModule="CoolerPal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceVC" id="aPV-DL-X95" userLabel="Device" customClass="DeviceViewController" customModule="CoolerPal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fNU-A5-qyI"/>
                         <viewControllerLayoutGuide type="bottom" id="ciY-H3-X9c"/>
@@ -313,6 +313,6 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="g4f-Wc-Cdd"/>
-        <segue reference="oMg-13-uhU"/>
+        <segue reference="0vR-Ge-uiQ"/>
     </inferredMetricsTieBreakers>
 </document>
