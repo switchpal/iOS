@@ -21,6 +21,7 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     @IBOutlet weak var temperatureRange: UIButton!
     @IBOutlet weak var controlMode: UISwitch!
     @IBOutlet weak var switchState: UISwitch!
+    @IBOutlet weak var more: UIButton!
     
     var indicator: UIActivityIndicatorView!
     var isOperationInProgress = false
@@ -76,10 +77,51 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     }
     
     @IBAction func onTemperatureRangeTouchUpInside(sender: AnyObject) {
+        goConfigView()
+    }
+    
+    @IBAction func onMoreTouchUpInside(sender: AnyObject) {
+        let alertController = UIAlertController(title: "Default Style", message: "A standard alert.", preferredStyle: .Alert)
+        
+        // go to the config view
+        let configAction = UIAlertAction(title: "Config temperature range", style: .Default) { (_) in
+            self.goConfigView()
+        }
+        
+        // go to the QR scan view
+        let newDeviceAction = UIAlertAction(title: "Use another device", style: .Default) { (_) in
+            self.goQRScanView()
+        }
+        let feedbackAction = UIAlertAction(title: "Feedback", style: .Default) { (_) in
+            self.openFeedbackInBrowser()
+
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }
+        
+        alertController.addAction(configAction)
+        alertController.addAction(newDeviceAction)
+        alertController.addAction(feedbackAction)
+        alertController.addAction(cancelAction)
+        self.presentViewController(alertController, animated: true) {
+            
+        }
+    }
+    
+    func goConfigView() {
         self.centralManager.cancelPeripheralConnection(self.peripheral)
         let defaults = NSUserDefaults.standardUserDefaults()
         device.writeDefaults(defaults)
         self.performSegueWithIdentifier("configSegue", sender: self)
+    }
+    
+    func goQRScanView() {
+        self.centralManager.cancelPeripheralConnection(self.peripheral)
+        self.performSegueWithIdentifier("deviceToQRScanSegue", sender: self)
+    }
+    
+    func openFeedbackInBrowser() {
+        self.centralManager.cancelPeripheralConnection(self.peripheral)
+        UIApplication.sharedApplication().openURL(NSURL(string:"http://www.getcoolerpal.com/")!)
     }
     
     func showProgressOverlay() {
