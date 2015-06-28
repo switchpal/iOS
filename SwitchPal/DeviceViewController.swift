@@ -192,7 +192,7 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
                     temperatureRangeCharacteristic = characteristic
                     if self.fromView != nil && self.fromView == "config" {
                         let data = NSData()
-                        peripheral.writeValue(device.encodeTemperatureRange(), forCharacteristic: characteristic, type: CBCharacteristicWriteType.WithResponse)
+                        queue.add(DeviceWriteOperation(characteristic: characteristic, data: device.encodeTemperatureRange()))
                     }
                 case Device.CONTROL_MODE_UUID:
                     controlModeCharacteristic = characteristic
@@ -200,14 +200,18 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
                     switchStateCharacteristic = characteristic
                 default:
                     println("Unknown characteristics: ", uuid.UUIDString)
+                    return
+                }
+                
+                // read the characteristics on startup
+                if !(self.fromView != nil && self.fromView == "config" && uuid.UUIDString == Device.TEMPERATURE_RANGE_UUID) {
+                    queue.add(DeviceReadOperation(characteristic: characteristic))
+                }
+                if (uuid.UUIDString == Device.CONTROL_MODE_UUID || uuid.UUIDString == Device.SWITCH_STATE_UUID) {
+                    // also enable notification
+                    queue.add(DeviceEnableNotificationOperation(characteristic: characteristic))
                 }
             }
-            
-            // read the characteristics on startup
-            if self.fromView == nil {
-                queue.add(DeviceReadOperation(characteristic: characteristic))
-            }
-
         }
     }
     
@@ -249,6 +253,19 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
             println("unknown characteristic: \(characteristic)")
         }
         //updateView()
+    }
+    
+    // the notification subscription is successful
+    func peripheral(peripheral: CBPeripheral!, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
+        
+        if (error != nil) {
+            println("Error changing notification state: " + error.localizedDescription)
+        }
+        
+        queue.markCurrentDone()
+        if (!queue.isEmpty()) {
+            queue.executeNextIfAny()
+        }
     }
     
     func toggleControlMode() {

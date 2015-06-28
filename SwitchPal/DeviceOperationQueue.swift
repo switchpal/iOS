@@ -82,3 +82,9 @@ class DeviceWriteOperation: DeviceOperation {
         peripheral.writeValue(self.data, forCharacteristic: self.characteristic, type: CBCharacteristicWriteType.WithResponse)
     }
 }
+
+class DeviceEnableNotificationOperation: DeviceOperation {
+    override func perform(peripheral: CBPeripheral) {
+        peripheral.setNotifyValue(true, forCharacteristic: self.characteristic)
+    }
+}
