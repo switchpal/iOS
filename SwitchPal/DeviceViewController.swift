@@ -31,6 +31,7 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     var controlModeCharacteristic: CBCharacteristic!
     var switchStateCharacteristic: CBCharacteristic!
     
+    var timer: NSTimer!
     
     // How does the user come to this ViewController
     // "scan": coming from QRCode, just get the temperature
@@ -90,9 +91,11 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         
         // go to the QR scan view
         let newDeviceAction = UIAlertAction(title: "Use another device", style: .Default) { (_) in
+            Analytics.trackClick("NewDevice")
             self.goQRScanView()
         }
         let feedbackAction = UIAlertAction(title: "Feedback", style: .Default) { (_) in
+            Analytics.trackClick("Feedback")
             self.openFeedbackInBrowser()
 
         }
@@ -203,6 +206,12 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         peripheral.delegate = self
         peripheral.discoverServices(nil)
         queue = DeviceOperationQueue(peripheral: peripheral)
+        timer = NSTimer.scheduledTimerWithTimeInterval(15, target: self, selector: Selector("requestTemperature"), userInfo: nil, repeats: true)
+    }
+    
+    func requestTemperature() {
+        println("request temperature updates")
+        queue.add(DeviceReadOperation(characteristic: temperatureCharacteristic))
     }
     
     // for some reason, device is disconnected
@@ -244,6 +253,7 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
                     if self.fromView != nil && self.fromView == "config" {
                         let data = NSData()
                         queue.add(DeviceWriteOperation(characteristic: characteristic, data: device.encodeTemperatureRange()))
+                        Analytics.trackSetTemperatureRange(device.temperatureRangeMin, max: device.temperatureRangeMax)
                     }
                 case Device.CONTROL_MODE_UUID:
                     controlModeCharacteristic = characteristic
@@ -274,12 +284,16 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
             let temp = Device.decodeTemperature(characteristic.value)
             device.temperature = temp
             println("temp: ", temp)
+            Analytics.trackTemperature(temp)
         case Device.SWITCH_STATE_UUID:
             device.switchState = Device.decodeBool(characteristic.value)
+            Analytics.trackSwitchState(device.switchState)
         case Device.CONTROL_MODE_UUID:
             device.controlMode = Device.decodeBool(characteristic.value)
+            Analytics.trackControlMode(device.controlMode)
         case Device.TEMPERATURE_RANGE_UUID:
             (device.temperatureRangeMin, device.temperatureRangeMax) = Device.decodeTemperatureRange(characteristic.value)
+            Analytics.trackSetTemperatureRange(device.temperatureRangeMin, max: device.temperatureRangeMax)
         default:
             println("data:", characteristic.value)
             println("unknown characteristic: \(characteristic)")
@@ -343,6 +357,7 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         //peripheral.writeValue(data, forCharacteristic: controlModeCharacteristic, type:CBCharacteristicWriteType.WithResponse)
         showProgressOverlay()
         
+        Analytics.trackSetControlMode(!currentMode)
     }
     
     func toggleSwitchState() {
@@ -361,6 +376,8 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         queue.add(DeviceWriteOperation(characteristic: switchStateCharacteristic, data: data))
         //peripheral.writeValue(data, forCharacteristic: switchStateCharacteristic, type: CBCharacteristicWriteType.WithResponse)
         showProgressOverlay()
+        
+        Analytics.trackSetSwitchState(!currentState)
     }
     
     func updateView() {

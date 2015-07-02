@@ -64,7 +64,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoolerPal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S93-DD-Nah">
-                                <rect key="frame" x="262" y="91" width="75" height="20.5"/>
+                                <rect key="frame" x="262" y="40" width="75" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -135,7 +135,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wD0-TG-DaT">
-                                <rect key="frame" x="525" y="87" width="36" height="30"/>
+                                <rect key="frame" x="538" y="36" width="36" height="30"/>
                                 <state key="normal" title="More">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -149,12 +149,12 @@
                             <constraint firstItem="ciY-H3-X9c" firstAttribute="top" secondItem="gWI-eL-D6E" secondAttribute="bottom" constant="40" id="1V8-PQ-crI"/>
                             <constraint firstItem="Rl0-gE-yzi" firstAttribute="baseline" secondItem="w6V-Vu-fPh" secondAttribute="baseline" id="91G-d1-9rG"/>
                             <constraint firstItem="Rl0-gE-yzi" firstAttribute="leading" secondItem="w6V-Vu-fPh" secondAttribute="trailing" constant="8" id="ANQ-Z6-dhW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="wD0-TG-DaT" secondAttribute="trailing" constant="23" id="byb-FH-bRv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="wD0-TG-DaT" secondAttribute="trailing" constant="10" id="byb-FH-bRv"/>
                             <constraint firstAttribute="centerX" secondItem="gWI-eL-D6E" secondAttribute="centerX" id="dJ9-fK-yla"/>
                             <constraint firstAttribute="centerY" secondItem="w6V-Vu-fPh" secondAttribute="centerY" id="dRH-H5-b5s"/>
                             <constraint firstAttribute="centerX" secondItem="w6V-Vu-fPh" secondAttribute="centerX" constant="0.5" id="oy7-Q7-ZOd"/>
                             <constraint firstItem="wD0-TG-DaT" firstAttribute="baseline" secondItem="S93-DD-Nah" secondAttribute="baseline" constant="0.5" id="rd3-4f-SbB"/>
-                            <constraint firstItem="S93-DD-Nah" firstAttribute="top" secondItem="fNU-A5-qyI" secondAttribute="bottom" constant="71" id="tgd-Th-r9C"/>
+                            <constraint firstItem="S93-DD-Nah" firstAttribute="top" secondItem="fNU-A5-qyI" secondAttribute="bottom" constant="20" id="tgd-Th-r9C"/>
                             <constraint firstAttribute="centerX" secondItem="S93-DD-Nah" secondAttribute="centerX" id="vfU-Zd-ZUq"/>
                         </constraints>
                     </view>
@@ -185,7 +185,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoolerPal Config" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8EB-bt-kYB">
-                                <rect key="frame" x="239" y="52" width="130.5" height="20.5"/>
+                                <rect key="frame" x="239" y="40" width="130.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -223,7 +223,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Q4-6F-fKx" userLabel="Items">
-                                <rect key="frame" x="150" y="110" width="300" height="205"/>
+                                <rect key="frame" x="150" y="98" width="300" height="205"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min Temperature" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqu-dU-sMd">
                                         <rect key="frame" x="0.0" y="44" width="129" height="20.5"/>
@@ -292,7 +292,7 @@
                             <constraint firstAttribute="centerX" secondItem="pPu-hU-ddT" secondAttribute="centerX" constant="-0.5" id="63L-iN-ETJ"/>
                             <constraint firstAttribute="centerX" secondItem="8EB-bt-kYB" secondAttribute="centerX" constant="-5" id="LMB-4a-BCS"/>
                             <constraint firstItem="0Q4-6F-fKx" firstAttribute="top" secondItem="8EB-bt-kYB" secondAttribute="bottom" constant="37.5" id="Oh7-L0-H5a"/>
-                            <constraint firstItem="8EB-bt-kYB" firstAttribute="top" secondItem="39L-Ao-r6E" secondAttribute="bottom" constant="32" id="geO-aL-SMw"/>
+                            <constraint firstItem="8EB-bt-kYB" firstAttribute="top" secondItem="39L-Ao-r6E" secondAttribute="bottom" constant="20" id="geO-aL-SMw"/>
                             <constraint firstItem="ts6-48-B9D" firstAttribute="top" secondItem="pPu-hU-ddT" secondAttribute="bottom" constant="168" id="jdD-5J-fMG"/>
                             <constraint firstAttribute="centerX" secondItem="0Q4-6F-fKx" secondAttribute="centerX" id="pdC-v8-Gwr"/>
                         </constraints>

@@ -155,8 +155,8 @@ public class Device {
         let base32 = Array("abcdefghijklmnopqrstuvwxyz234567")
         
         var name = [Int]()
-        name.append((values[0] << 1) + ((values[1] & 0x8) >> 7))
-        name.append(((values[1] & 0x0F) << 2) + ((values[2] & 0x08) >> 2))
+        name.append((values[0] << 1) + ((values[1] & 0x8) >> 3))
+        name.append(((values[1] & 0x07) << 2) + ((values[2] & 0x08) >> 2))
         name.append(((values[2] & 0x03) << 3) + (values[3] & 0x0E) >> 1)
         name.append(((values[3] & 0x01) << 4) + values[4])
         
