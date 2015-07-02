@@ -64,8 +64,8 @@ class Analytics {
     
     class func trackSetTemperatureRange(min: Float, max: Float) {
         let dimensions = [
-            "setTemperatureRangeMin": "",
-            "setTemperatureRangeMax": "",
+            "setTemperatureRangeMin": NSString(format: "%.2f", min) as String,
+            "setTemperatureRangeMax": NSString(format: "%.2f", max) as String,
         ]
         PFAnalytics.trackEvent(EVENT_APP, dimensions: dimensions)
     }

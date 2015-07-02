@@ -57,6 +57,27 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
         // Do any additional setup after loading the view.
         self.centralManager = CBCentralManager(delegate: self, queue: nil)
         showProgressOverlay()
+        
+        let notificationCenter = NSNotificationCenter.defaultCenter()
+        //UIApplicationDidEnterBackgroundNotification & UIApplicationWillEnterForegroundNotification shouldn't be quoted
+        notificationCenter.addObserver(self, selector: "didEnterBackground", name: UIApplicationDidEnterBackgroundNotification, object: nil)
+        notificationCenter.addObserver(self, selector: "didBecomeActive", name: UIApplicationWillEnterForegroundNotification, object: nil)
+    }
+    
+    func didEnterBackground() {
+        cleanup()
+    }
+    
+    func didBecomeActive() {
+        //startTimer()
+        self.centralManager = CBCentralManager(delegate: self, queue: nil)
+    }
+    
+    func cleanup() {
+        self.centralManager.cancelPeripheralConnection(self.peripheral)
+        if (timer != nil) {
+            timer.invalidate()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -111,19 +132,19 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     }
     
     func goConfigView() {
-        self.centralManager.cancelPeripheralConnection(self.peripheral)
+        cleanup()
         let defaults = NSUserDefaults.standardUserDefaults()
         device.writeDefaults(defaults)
         self.performSegueWithIdentifier("configSegue", sender: self)
     }
     
     func goQRScanView() {
-        self.centralManager.cancelPeripheralConnection(self.peripheral)
+        cleanup()
         self.performSegueWithIdentifier("deviceToQRScanSegue", sender: self)
     }
     
     func openFeedbackInBrowser() {
-        self.centralManager.cancelPeripheralConnection(self.peripheral)
+        cleanup()
         UIApplication.sharedApplication().openURL(NSURL(string:"http://www.getcoolerpal.com/")!)
     }
     
