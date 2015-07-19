@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		451C06921B45650B00636220 /* Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C06911B45650B00636220 /* Analytics.swift */; };
 		4591579B1B3EF37C00F52CA7 /* DeviceOperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4591579A1B3EF37C00F52CA7 /* DeviceOperationQueue.swift */; };
-		459B81AC1B15ADE700A9714C /* DeviceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B81AB1B15ADE700A9714C /* DeviceTests.swift */; };
 		459B81AE1B15AEB600A9714C /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459B81AD1B15AEB600A9714C /* Device.swift */; };
 		45A4B8ED1B0C233E0089A469 /* BoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A4B8EC1B0C233E0089A469 /* BoundingBoxView.swift */; };
 		45A4B8EF1B0C23EE0089A469 /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A4B8EE1B0C23EE0089A469 /* DeviceViewController.swift */; };
@@ -19,7 +18,6 @@
 		45AE73D41B0BA72400DC3B90 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AE73D31B0BA72400DC3B90 /* AppDelegate.swift */; };
 		45AE73D91B0BA72400DC3B90 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45AE73D71B0BA72400DC3B90 /* Main.storyboard */; };
 		45AE73DB1B0BA72400DC3B90 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45AE73DA1B0BA72400DC3B90 /* Images.xcassets */; };
-		45AE73EA1B0BA72400DC3B90 /* SwitchPalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AE73E91B0BA72400DC3B90 /* SwitchPalTests.swift */; };
 		45C26BFD1B1884A20059D4FF /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C26BFB1B1884A20059D4FF /* Bolts.framework */; };
 		45C26BFE1B1884A20059D4FF /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C26BFC1B1884A20059D4FF /* Parse.framework */; };
 		45C26C001B1884E40059D4FF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45C26BFF1B1884E40059D4FF /* CFNetwork.framework */; };
@@ -47,7 +45,6 @@
 /* Begin PBXFileReference section */
 		451C06911B45650B00636220 /* Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Analytics.swift; sourceTree = "<group>"; };
 		4591579A1B3EF37C00F52CA7 /* DeviceOperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceOperationQueue.swift; sourceTree = "<group>"; };
-		459B81AB1B15ADE700A9714C /* DeviceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceTests.swift; sourceTree = "<group>"; };
 		459B81AD1B15AEB600A9714C /* Device.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		45A4B8EC1B0C233E0089A469 /* BoundingBoxView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoundingBoxView.swift; sourceTree = "<group>"; };
 		45A4B8EE1B0C23EE0089A469 /* DeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
@@ -60,8 +57,6 @@
 		45AE73D81B0BA72400DC3B90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		45AE73DA1B0BA72400DC3B90 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		45AE73E31B0BA72400DC3B90 /* CoolerPalTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoolerPalTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		45AE73E81B0BA72400DC3B90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		45AE73E91B0BA72400DC3B90 /* SwitchPalTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchPalTests.swift; sourceTree = "<group>"; };
 		45C26BFB1B1884A20059D4FF /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = Frameworks/Bolts.framework; sourceTree = "<group>"; };
 		45C26BFC1B1884A20059D4FF /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = Frameworks/Parse.framework; sourceTree = "<group>"; };
 		45C26BFF1B1884E40059D4FF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -132,7 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				45AE73D01B0BA72400DC3B90 /* SwitchPal */,
-				45AE73E61B0BA72400DC3B90 /* SwitchPalTests */,
 				45C26BF61B1883D20059D4FF /* Frameworks */,
 				45AE73CF1B0BA72400DC3B90 /* Products */,
 			);
@@ -164,24 +158,6 @@
 			isa = PBXGroup;
 			children = (
 				45AE73D21B0BA72400DC3B90 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		45AE73E61B0BA72400DC3B90 /* SwitchPalTests */ = {
-			isa = PBXGroup;
-			children = (
-				45AE73E91B0BA72400DC3B90 /* SwitchPalTests.swift */,
-				459B81AB1B15ADE700A9714C /* DeviceTests.swift */,
-				45AE73E71B0BA72400DC3B90 /* Supporting Files */,
-			);
-			path = SwitchPalTests;
-			sourceTree = "<group>";
-		};
-		45AE73E71B0BA72400DC3B90 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				45AE73E81B0BA72400DC3B90 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -326,8 +302,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45AE73EA1B0BA72400DC3B90 /* SwitchPalTests.swift in Sources */,
-				459B81AC1B15ADE700A9714C /* DeviceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
