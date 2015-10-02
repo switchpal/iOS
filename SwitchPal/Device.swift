@@ -49,8 +49,8 @@ public class Device {
     }
     
     public class func decodeTemperatureRange(data: NSData) -> (Float, Float) {
-        var data1 = data.subdataWithRange(NSMakeRange(0, 2))
-        var data2 = data.subdataWithRange(NSMakeRange(2, 2))
+        let data1 = data.subdataWithRange(NSMakeRange(0, 2))
+        let data2 = data.subdataWithRange(NSMakeRange(2, 2))
         return (decodeTemperature(data1), decodeTemperature(data2))
     }
     
@@ -77,9 +77,9 @@ public class Device {
     public class func initFromUrl(url: String) -> Device? {
         func getQueryStringParameter(url: String, param: String) -> String? {
             let url = NSURLComponents(string: url)!
-            return (url.queryItems as! [NSURLQueryItem]).filter({ (item) in item.name == param }).first?.value!
+            return (url.queryItems!).filter({ (item) in item.name == param }).first?.value!
         }
-        let infoString = getQueryStringParameter(url, "device")
+        let infoString = getQueryStringParameter(url, param: "device")
         return Device.decodeDeviceInfoString(infoString!)
     }
     
@@ -142,17 +142,17 @@ public class Device {
     // encode the last 20bits of a given mac address to a 4-character base32-encoded string
     public class func getBase32ShortAddress(addr: String)-> String {
         var addr = addr;
-        addr = addr.substringFromIndex(advance(addr.endIndex, -7))
-        addr = addr.stringByReplacingOccurrencesOfString(":", withString: "", options: nil, range: nil)
+        addr = addr.substringFromIndex(addr.endIndex.advancedBy(-7))
+        addr = addr.stringByReplacingOccurrencesOfString(":", withString: "")
         
-        let hex = Array("0123456789ABCDEF")
+        let hex = Array(arrayLiteral: "0123456789ABCDEF")
         var values = [Int]()
         
-        for char in addr {
-            values.append(find(hex, char)!)
+        for char in addr.characters {
+            values.append(hex.indexOf(String(char))!)
         }
         
-        let base32 = Array("abcdefghijklmnopqrstuvwxyz234567")
+        let base32 = Array(arrayLiteral: "abcdefghijklmnopqrstuvwxyz234567")
         
         var name = [Int]()
         name.append((values[0] << 1) + ((values[1] & 0x8) >> 3))

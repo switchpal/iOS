@@ -26,7 +26,7 @@ class MainViewController: UIViewController {
 
 
     @IBAction func scan(sender: UIButton) {
-        println("lets scan")
+        print("lets scan")
         
         self.performSegueWithIdentifier("scanSegue", sender: self)
         //self.performSegueWithIdentifier("mainToDeviceSegue", sender: self)

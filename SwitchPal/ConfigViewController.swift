@@ -64,7 +64,7 @@ class ConfigViewController: UIViewController {
     }
     
     @IBAction func onSaveTouchUpInside(sender: AnyObject) {
-        println("min: \(min), max: \(max)")
+        print("min: \(min), max: \(max)")
         
         if (min < 20 || min > 32 || max < 20 || max > 32) {
             let alert = UIAlertView(title: "Error", message: "Temperature should between 20 to 32, and max should be larger than min", delegate: nil, cancelButtonTitle: "OK")
@@ -86,7 +86,7 @@ class ConfigViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         //
         if segue.identifier == "configToDeviceSegue" {
-            println("prepare configToDeviceSegure")
+            print("prepare configToDeviceSegure")
             let ctl = segue.destinationViewController as! DeviceViewController
             ctl.fromView = "config"
         }

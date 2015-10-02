@@ -25,7 +25,7 @@ class BoundingBoxView: UIView {
     }
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
     }
     
     func setCorners(corners: Array<CGPoint>) {
@@ -36,7 +36,7 @@ class BoundingBoxView: UIView {
     }
     
     func createPathFromPoints(points: Array<CGPoint>) -> UIBezierPath {
-        var path = UIBezierPath()
+        let path = UIBezierPath()
         // Start at the first corner
         path.moveToPoint(points.first!)
         

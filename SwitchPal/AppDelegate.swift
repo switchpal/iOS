@@ -24,15 +24,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let mainVC = storyboard.instantiateInitialViewController() as! UIViewController
+        let mainVC = storyboard.instantiateInitialViewController()!
         self.window?.rootViewController = mainVC
         self.window?.makeKeyAndVisible()
+
+        //return true
         
         let defaults = NSUserDefaults.standardUserDefaults()
         if let device = Device.initFromDefaults(defaults) {
             // device info is already saved
-            println("found previously registered device")
-            let deviceVC = storyboard.instantiateViewControllerWithIdentifier("DeviceVC") as! UIViewController
+            print("found previously registered device")
+            let deviceVC = storyboard.instantiateViewControllerWithIdentifier("DeviceVC")
             //mainVC.performSegueWithIdentifier("mainToDeviceSegue", sender: self)
             mainVC.presentViewController(deviceVC, animated: false, completion: nil)
         }

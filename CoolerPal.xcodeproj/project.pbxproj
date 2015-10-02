@@ -225,7 +225,8 @@
 		45AE73C61B0BA72400DC3B90 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = SwitchPal;
 				TargetAttributes = {
 					45AE73CD1B0BA72400DC3B90 = {
@@ -348,6 +349,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -424,6 +426,7 @@
 				INFOPLIST_FILE = SwitchPal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.getswitchpal.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = CoolerPal;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -444,6 +447,7 @@
 				INFOPLIST_FILE = SwitchPal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.getswitchpal.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = CoolerPal;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -464,6 +468,7 @@
 				);
 				INFOPLIST_FILE = SwitchPalTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.switchpal.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = CoolerPalTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwitchPal.app/SwitchPal";
 			};
@@ -479,6 +484,7 @@
 				);
 				INFOPLIST_FILE = SwitchPalTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.switchpal.ios.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = CoolerPalTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SwitchPal.app/SwitchPal";
 			};

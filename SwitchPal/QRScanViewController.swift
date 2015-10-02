@@ -23,17 +23,17 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         // Do any additional setup after loading the view.
         avCaptureSession = AVCaptureSession()
         let avCaptureDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
-        var error: NSError?;
-        if let avCaptureDeviceInput = AVCaptureDeviceInput.deviceInputWithDevice(avCaptureDevice, error: &error) as? AVCaptureDeviceInput {
+        do {
+            let avCaptureDeviceInput = try AVCaptureDeviceInput(device: avCaptureDevice)
             avCaptureSession.addInput(avCaptureDeviceInput)
-        } else {
-            println("cannot get input")
-            println(error)
+        } catch let error as NSError {
+            print("cannot get input")
+            print(error)
             return
         }
         
         // setup the preview layer
-        let previewLayer:AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer.layerWithSession(avCaptureSession) as! AVCaptureVideoPreviewLayer
+        let previewLayer:AVCaptureVideoPreviewLayer = AVCaptureVideoPreviewLayer(session:avCaptureSession) as AVCaptureVideoPreviewLayer
         previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
         previewLayer.bounds = self.view.bounds
         previewLayer.position = CGPointMake(CGRectGetMidX(self.view.bounds), CGRectGetMidY(self.view.bounds))
@@ -45,7 +45,7 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
         // ==== QRCode detector ====
         let output = AVCaptureMetadataOutput()
         avCaptureSession.addOutput(output)
-        println(output.availableMetadataObjectTypes)
+        print(output.availableMetadataObjectTypes)
         // we are only interested in QR Code
         output.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
         output.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
@@ -64,7 +64,7 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
             if metadataObject.type == AVMetadataObjectTypeQRCode {
                 let transformed = metadataObject as! AVMetadataMachineReadableCodeObject
                 
-                println(transformed.stringValue)
+                print(transformed.stringValue)
                 // check if it contains a valid device info
                 if let device = Device.initFromUrl(transformed.stringValue) {
                     avCaptureSession.stopRunning()
@@ -72,7 +72,7 @@ class QRScanViewController: UIViewController, AVCaptureMetadataOutputObjectsDele
                     device.writeDefaults(defaults)
                     self.performSegueWithIdentifier("scanToDeviceSegue", sender: self)
                 } else {
-                    println("unknown url found: \(transformed.stringValue)")
+                    print("unknown url found: \(transformed.stringValue)")
                 }
                 
                 // ==== bounding box ====

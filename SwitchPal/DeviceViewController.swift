@@ -150,7 +150,7 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "configSegue" {
-            println("prepare configSegue")
+            print("prepare configSegue")
             let ctl = segue.destinationViewController as! ConfigViewController
             ctl.min = device.temperatureRangeMin
             ctl.max = device.temperatureRangeMax
@@ -183,32 +183,32 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     */
     
     // only start the scanning if the bluetooth is turned on
-    func centralManagerDidUpdateState(central: CBCentralManager!) {
-        println("state: \(central.state.rawValue)")
+    func centralManagerDidUpdateState(central: CBCentralManager) {
+        print("state: \(central.state.rawValue)")
         
         switch central.state {
         case .PoweredOff:
-            println(".PowerOff")
+            print(".PowerOff")
         case .PoweredOn:
-            println(".PowerOn")
+            print(".PowerOn")
             // only start the scanning if the bluetooth is ready
             self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
         case .Resetting:
-            println(".Resetting")
+            print(".Resetting")
         case .Unauthorized:
-            println(".Unauthorized")
+            print(".Unauthorized")
         case .Unknown:
-            println(".Unknown")
+            print(".Unknown")
         case .Unsupported:
-            println(".Unsupported")
+            print(".Unsupported")
         }
     }
     
     // stop the scan after we find the device, and connect to the device
-    func centralManager(central: CBCentralManager!, didDiscoverPeripheral peripheral: CBPeripheral!, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber!) {
-        println("find a peripheral")
+    func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
+        print("find a peripheral")
         if peripheral.name == device.getName() {
-            println("find the device")
+            print("find the device")
             
             // stop scanning
             centralManager.stopScan()
@@ -217,13 +217,13 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
             // http://stackoverflow.com/a/26379021/693110
             self.peripheral = peripheral
             centralManager.connectPeripheral(peripheral, options: nil)
-            println("connecting to the device")
+            print("connecting to the device")
         }
     }
     
     // device is connected, lets discover the services
-    func centralManager(central: CBCentralManager!, didConnectPeripheral peripheral: CBPeripheral!) {
-        println("connected")
+    func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
+        print("connected")
         peripheral.delegate = self
         peripheral.discoverServices(nil)
         queue = DeviceOperationQueue(peripheral: peripheral)
@@ -231,41 +231,41 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     }
     
     func requestTemperature() {
-        println("request temperature updates")
+        print("request temperature updates")
         queue.add(DeviceReadOperation(characteristic: temperatureCharacteristic))
     }
     
     // for some reason, device is disconnected
-    func centralManager(central: CBCentralManager!, didDisconnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
-        println("disconnected")
+    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        print("disconnected")
     }
     
-    func centralManager(central: CBCentralManager!, didFailToConnectPeripheral peripheral: CBPeripheral!, error: NSError!) {
-        println("fail to connect")
+    func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        print("fail to connect")
     }
     
     
-    func peripheral(peripheral: CBPeripheral!, didDiscoverServices error: NSError!) {
-        println("peripheral: didDiscoverServices")
-        for service in peripheral.services {
-            if let uuid = service.UUID {
-                println("uuid: ", uuid.UUIDString)
-                if uuid.UUIDString == Device.SERVICE_UUID {
-                    println("find service uuid")
-                    peripheral.discoverCharacteristics(nil, forService: service as! CBService)
-                }
+    func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?) {
+        print("peripheral: didDiscoverServices")
+        for service in peripheral.services! {
+            let uuid = service.UUID
+            print("uuid: ", uuid.UUIDString)
+            if uuid.UUIDString == Device.SERVICE_UUID {
+                print("find service uuid")
+                peripheral.discoverCharacteristics(nil, forService: service)
             }
-            println("UUID: \(service.UUID)")
+
+            print("UUID: \(service.UUID)")
         }
     }
     
-    func peripheral(peripheral: CBPeripheral!, didDiscoverCharacteristicsForService service: CBService!, error: NSError!) {
-        println("didDiscoverCharacteristicsForService")
-        for char in service.characteristics {
-            println("characteristic", char)
-            let characteristic = char as! CBCharacteristic
-            if let uuid = characteristic.UUID {
-                println("uuid: ", uuid.UUIDString)
+    func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?) {
+        print("didDiscoverCharacteristicsForService")
+        for char in service.characteristics! {
+            print("characteristic", char)
+            let characteristic = char 
+            let uuid = characteristic.UUID
+                print("uuid: ", uuid.UUIDString)
                 switch uuid.UUIDString {
                 case Device.TEMPERATURE_UUID:
                     temperatureCharacteristic = characteristic
@@ -281,7 +281,7 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
                 case Device.SWITCH_STATE_UUID:
                     switchStateCharacteristic = characteristic
                 default:
-                    println("Unknown characteristics: ", uuid.UUIDString)
+                    print("Unknown characteristics: ", uuid.UUIDString)
                     return
                 }
                 
@@ -293,31 +293,31 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
                     // also enable notification
                     queue.add(DeviceEnableNotificationOperation(characteristic: characteristic))
                 }
-            }
+
         }
     }
     
     // if receive response from the device, either from a read request, or a notification
-    func peripheral(peripheral: CBPeripheral!, didUpdateValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
-        println("didUpdateValueForCharacteristic")
+    func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+        print("didUpdateValueForCharacteristic")
         switch characteristic.UUID.UUIDString {
         case Device.TEMPERATURE_UUID:
-            let temp = Device.decodeTemperature(characteristic.value)
+            let temp = Device.decodeTemperature(characteristic.value!)
             device.temperature = temp
-            println("temp: ", temp)
+            print("temp: ", temp)
             Analytics.trackTemperature(temp)
         case Device.SWITCH_STATE_UUID:
-            device.switchState = Device.decodeBool(characteristic.value)
+            device.switchState = Device.decodeBool(characteristic.value!)
             Analytics.trackSwitchState(device.switchState)
         case Device.CONTROL_MODE_UUID:
-            device.controlMode = Device.decodeBool(characteristic.value)
+            device.controlMode = Device.decodeBool(characteristic.value!)
             Analytics.trackControlMode(device.controlMode)
         case Device.TEMPERATURE_RANGE_UUID:
-            (device.temperatureRangeMin, device.temperatureRangeMax) = Device.decodeTemperatureRange(characteristic.value)
+            (device.temperatureRangeMin, device.temperatureRangeMax) = Device.decodeTemperatureRange(characteristic.value!)
             Analytics.trackSetTemperatureRange(device.temperatureRangeMin, max: device.temperatureRangeMax)
         default:
-            println("data:", characteristic.value)
-            println("unknown characteristic: \(characteristic)")
+            print("data:", characteristic.value)
+            print("unknown characteristic: \(characteristic)")
         }
         
         // this usually indicates that the previous request is complete, we can proceed to the next one
@@ -330,10 +330,10 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     }
     
     //
-    func peripheral(peripheral: CBPeripheral!, didWriteValueForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
+    func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         //println("didWriteValueForCharacteristic")
         if (error != nil) {
-            println("didWriteValueForCharacteristic error:" + error.localizedDescription)
+            print("didWriteValueForCharacteristic error:" + error!.localizedDescription)
         }
         
         switch characteristic.UUID.UUIDString {
@@ -342,17 +342,17 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
             peripheral.readValueForCharacteristic(characteristic)
             //device.switchState = Device.decodeBool(characteristic.value)
         default:
-            println("data:", characteristic.value)
-            println("unknown characteristic: \(characteristic)")
+            print("data:", characteristic.value)
+            print("unknown characteristic: \(characteristic)")
         }
         //updateView()
     }
     
     // the notification subscription is successful
-    func peripheral(peripheral: CBPeripheral!, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic!, error: NSError!) {
+    func peripheral(peripheral: CBPeripheral, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         
         if (error != nil) {
-            println("Error changing notification state: " + error.localizedDescription)
+            print("Error changing notification state: " + error!.localizedDescription)
         }
         
         queue.markCurrentDone()

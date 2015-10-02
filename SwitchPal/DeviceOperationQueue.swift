@@ -37,7 +37,7 @@ class DeviceOperationQueue {
     
     func executeNextIfAny() {
         if (self.current != nil) {
-            println("there is still operation in progress")
+            print("there is still operation in progress")
             return
         }
         if (self.operations.isEmpty) {
@@ -65,7 +65,7 @@ class DeviceOperation {
 
 class DeviceReadOperation: DeviceOperation {
     override func perform(peripheral: CBPeripheral) {
-        peripheral.readValueForCharacteristic(self.characteristic)
+        peripheral.readValueForCharacteristic(self.characteristic!)
     }
 }
 
@@ -79,12 +79,12 @@ class DeviceWriteOperation: DeviceOperation {
     }
     
     override func perform(peripheral: CBPeripheral) {
-        peripheral.writeValue(self.data, forCharacteristic: self.characteristic, type: CBCharacteristicWriteType.WithResponse)
+        peripheral.writeValue(self.data!, forCharacteristic: self.characteristic!, type: CBCharacteristicWriteType.WithResponse)
     }
 }
 
 class DeviceEnableNotificationOperation: DeviceOperation {
     override func perform(peripheral: CBPeripheral) {
-        peripheral.setNotifyValue(true, forCharacteristic: self.characteristic)
+        peripheral.setNotifyValue(true, forCharacteristic: self.characteristic!)
     }
 }
