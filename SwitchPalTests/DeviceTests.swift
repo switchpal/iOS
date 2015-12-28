@@ -9,7 +9,7 @@
 
 import UIKit
 import XCTest
-import CoolerPal
+import SwitchPal 
 
 class DeviceTests: XCTestCase {
     

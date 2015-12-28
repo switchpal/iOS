@@ -1,6 +1,6 @@
 //
 //  DeviceOperationQueue.swift
-//  CoolerPal
+//  SwitchPal
 //
 //  Created by Chunliang Lyu on 27/6/15.
 //  Copyright (c) 2015 SwitchPal. All rights reserved.

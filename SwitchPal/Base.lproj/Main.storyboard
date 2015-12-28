@@ -8,7 +8,7 @@
         <!--Get Started-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" userLabel="Get Started" customClass="MainViewController" customModule="CoolerPal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" userLabel="Get Started" customClass="MainViewController" customModule="SwitchPal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -17,7 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoolerPal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKN-3H-LzU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SwitchPal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zKN-3H-LzU">
                                 <rect key="frame" x="263" y="77" width="75" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -54,7 +54,7 @@
         <!--Device-->
         <scene sceneID="afP-wk-nES">
             <objects>
-                <viewController storyboardIdentifier="DeviceVC" id="aPV-DL-X95" userLabel="Device" customClass="DeviceViewController" customModule="CoolerPal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeviceVC" id="aPV-DL-X95" userLabel="Device" customClass="DeviceViewController" customModule="SwitchPal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fNU-A5-qyI"/>
                         <viewControllerLayoutGuide type="bottom" id="ciY-H3-X9c"/>
@@ -63,7 +63,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoolerPal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S93-DD-Nah">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SwitchPal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S93-DD-Nah">
                                 <rect key="frame" x="262" y="40" width="75" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -175,7 +175,7 @@
         <!--Config-->
         <scene sceneID="0jw-S9-Ggb">
             <objects>
-                <viewController id="1Ro-pM-7yR" userLabel="Config" customClass="ConfigViewController" customModule="CoolerPal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="1Ro-pM-7yR" userLabel="Config" customClass="ConfigViewController" customModule="SwitchPal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="39L-Ao-r6E"/>
                         <viewControllerLayoutGuide type="bottom" id="ts6-48-B9D"/>
@@ -184,7 +184,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoolerPal Config" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8EB-bt-kYB">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SwitchPal Config" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8EB-bt-kYB">
                                 <rect key="frame" x="239" y="40" width="130.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -312,7 +312,7 @@
         <!--QR Scan-->
         <scene sceneID="6YR-IO-dq3">
             <objects>
-                <viewController id="Y7N-8S-hja" userLabel="QR Scan" customClass="QRScanViewController" customModule="CoolerPal" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Y7N-8S-hja" userLabel="QR Scan" customClass="QRScanViewController" customModule="SwitchPal" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="GwI-8d-dCU"/>
                         <viewControllerLayoutGuide type="bottom" id="Dcc-UT-ZVV"/>

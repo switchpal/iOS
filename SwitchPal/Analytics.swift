@@ -1,6 +1,6 @@
 //
 //  Analytics.swift
-//  CoolerPal
+//  SwitchPal
 //
 //  Created by Chunliang Lyu on 2/7/15.
 //  Copyright (c) 2015 SwitchPal. All rights reserved.

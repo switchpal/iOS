@@ -145,7 +145,7 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
     
     func openFeedbackInBrowser() {
         cleanup()
-        UIApplication.sharedApplication().openURL(NSURL(string:"http://www.getcoolerpal.com/")!)
+        UIApplication.sharedApplication().openURL(NSURL(string:"http://www.getswitchpal.com/")!)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
