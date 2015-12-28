@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //return true
         
         let defaults = NSUserDefaults.standardUserDefaults()
-        if let device = Device.initFromDefaults(defaults) {
+        if let _ = Device.initFromDefaults(defaults) {
             // device info is already saved
             print("found previously registered device")
             let deviceVC = storyboard.instantiateViewControllerWithIdentifier("DeviceVC")

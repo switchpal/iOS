@@ -101,10 +101,10 @@ public class Device {
     public func writeDefaults(defaults: NSUserDefaults) {
         defaults.setObject(self.address, forKey: "address")
         defaults.setObject(self.passkey, forKey: "passkey")
-        if let state = self.switchState {
+        if let _ = self.switchState {
             defaults.setBool(self.switchState, forKey: "switchState")
         }
-        if let mode = self.controlMode {
+        if let _ = self.controlMode {
             defaults.setBool(self.controlMode, forKey: "controlMode")
         }
         defaults.setFloat(self.temperature, forKey: "temperature")
@@ -145,14 +145,14 @@ public class Device {
         addr = addr.substringFromIndex(addr.endIndex.advancedBy(-7))
         addr = addr.stringByReplacingOccurrencesOfString(":", withString: "")
         
-        let hex = Array(arrayLiteral: "0123456789ABCDEF")
+        let hex = Array("0123456789ABCDEF".characters)
         var values = [Int]()
         
         for char in addr.characters {
-            values.append(hex.indexOf(String(char))!)
+            values.append(hex.indexOf(char)!)
         }
         
-        let base32 = Array(arrayLiteral: "abcdefghijklmnopqrstuvwxyz234567")
+        let base32 = "abcdefghijklmnopqrstuvwxyz234567"
         
         var name = [Int]()
         name.append((values[0] << 1) + ((values[1] & 0x8) >> 3))
@@ -162,7 +162,7 @@ public class Device {
         
         var a = ""
         for n in name {
-            a += String(base32[n])
+            a += String(base32[base32.startIndex.advancedBy(n)])
         }
         return a
     }

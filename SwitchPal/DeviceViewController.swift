@@ -272,7 +272,7 @@ class DeviceViewController: UIViewController, CBCentralManagerDelegate, CBPeriph
                 case Device.TEMPERATURE_RANGE_UUID:
                     temperatureRangeCharacteristic = characteristic
                     if self.fromView != nil && self.fromView == "config" {
-                        let data = NSData()
+                        //let data = NSData()
                         queue.add(DeviceWriteOperation(characteristic: characteristic, data: device.encodeTemperatureRange()))
                         Analytics.trackSetTemperatureRange(device.temperatureRangeMin, max: device.temperatureRangeMax)
                     }
